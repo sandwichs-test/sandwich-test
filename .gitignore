@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/target/
-=======
 sandwicth-test.iml
 target/generated-sources/
 /target/
@@ -38,4 +35,3 @@ dependency-reduced-pom.xml
 .idea
 
 README.html
->>>>>>> 838ce4ecab96beb0b757e336dd3dc02a7184c968
