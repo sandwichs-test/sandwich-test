@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -143,9 +144,11 @@ function doclick(obj)  {
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
 					<th>环境信息编号</th><th>IP地址</th><th>端口</th><th>URI地址</th><th>名称</th><th >操作</th></tr>
+				<c:forEach items="${envirs}" var="envir">
 				<tr>
-					<td>111</td><td>10.10.10.10</td><td>2222</td><td>baidu.com</td><td>haha</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
+					<td>${envir.code}</td><td>${envir.ip}</td><td>${envir.port}</td><td>${envir.url}</td><td>${envir.name}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 </div>

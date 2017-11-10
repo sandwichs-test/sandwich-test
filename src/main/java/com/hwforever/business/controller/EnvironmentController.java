@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -22,6 +24,13 @@ public class EnvironmentController {
     @Resource
     private EnvironmentService environmentService;
 
+    @RequestMapping("/environmentInfoCtrl")
+    public String environmentInfoCtrl(HttpServletRequest request){
+        List<Environment> environments = environmentService.selectEnvironmentAll();
+        request.setAttribute("envirs",environments);
+        return "environmentInfoCtrl";
+    }
+
     @RequestMapping("/addEnvironment")
     public @ResponseBody String addEnvironment(HttpServletRequest request){
         String name = request.getParameter("name");
@@ -31,6 +40,7 @@ public class EnvironmentController {
         String url = request.getParameter("url");
         Environment environment = new Environment();
         environment.setIp(ip);
+        environment.setCode(LocalDate.now().toString().replace("-","")+ LocalTime.now().toString().replace(":","").substring(0,6));
         environment.setName(name);
         environment.setPort(port);
         environment.setUrl(url);
@@ -60,6 +70,7 @@ public class EnvironmentController {
         for (Environment environment1 : environments){
             System.out.println(environment1);
         }
-        return"d";
+        request.setAttribute("envirs",environments);
+        return"environmentInfoCtrl";
     }
 }

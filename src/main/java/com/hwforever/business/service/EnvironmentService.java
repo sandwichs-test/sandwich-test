@@ -22,6 +22,10 @@ public class EnvironmentService {
         environmentMapper.insertEnvironment(environment);
     }
 
+    public List<Environment> selectEnvironmentAll(){
+        return environmentMapper.selectEnvironmentAll();
+    }
+
     public List<Environment> selectEnvironment(Environment environment){
         if (environment.getCode().equals("")){
             environment.setCode(null);

@@ -21,11 +21,6 @@ public class IndexController {
         return "componentCtrl";
     }
 
-	@RequestMapping("/environmentInfoCtrl")
-    public String environmentInfoCtrl(){
-        return "environmentInfoCtrl";
-    }
-
 	@RequestMapping("/modelCtrl")
     public String test(){
         return "modelCtrl";

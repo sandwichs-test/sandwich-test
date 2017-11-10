@@ -19,7 +19,14 @@
         envir.port `envir.port`,
         envir.url `envir.url`
     </sql>
-    
+
+    <select id="selectEnvironmentAll" resultMap="envirRM">
+        SELECT
+        envir.id `envir.id`,
+        <include refid="allEnvironmentColumn"/>
+        FROM environment envir WHERE 1=1
+    </select>
+
     <select id="selectEnvironment" parameterType="com.hwforever.business.model.Environment" resultMap="envirRM">
         SELECT
             envir.id `envir.id`,
