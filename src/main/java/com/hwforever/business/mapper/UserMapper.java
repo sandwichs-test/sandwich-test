@@ -1,4 +1,9 @@
 package com.hwforever.business.mapper;
 
-public class UserMapper {
+/**
+ * @Author： ZhangQiufeng
+ * @Description：
+ * @Date： Created in 17:00 2017/11/10
+ */
+public interface UserMapper {
 }
