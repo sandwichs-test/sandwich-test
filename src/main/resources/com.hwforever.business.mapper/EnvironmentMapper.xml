@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwforever.business.mapper.EnvironmentMapper">
+    <resultMap id="envirRM" type="com.hwforever.business.model.Environment">
+        <id column="envir.id" property="id"/>
+        <result column="envir.code" property="code"/>
+        <result column="envir.name" property="name"/>
+        <result column="envir.ip" property="ip"/>
+        <result column="envir.port" property="port"/>
+        <result column="envir.url" property="url"/>
+    </resultMap>
+
+    <sql id="allEnvironmentColumn">
+        envir.code `envir.code`,
+        envir.name `envir.name`,
+        envir.ip `envir.ip`,
+        envir.port `envir.port`,
+        envir.url `envir.url`
+    </sql>
+    
+    <select id="selectEnvironment" parameterType="com.hwforever.business.model.Environment" resultMap="envirRM">
+        SELECT
+            envir.id `envir.id`,
+            <include refid="allEnvironmentColumn"/>
+        FROM environment envir WHERE 1=1
+        <if test="code != null">
+            AND code = #{code}
+        </if>
+        <if test="ip != null">
+            AND ip = #{ip}
+        </if>
+        <if test="port != null">
+            AND port = #{port}
+        </if>
+        <if test="url != null">
+            AND url = #{url}
+        </if>
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+    </select>
+    
+    <insert id="insertEnvironment" parameterType="com.hwforever.business.model.Environment" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO environment(
+        `name`,
+        `code`,
+        `ip`,
+        `port`,
+        `url`
+        )
+        VALUES(
+        #{name},
+        #{code},
+        #{ip},
+        #{port},
+        #{url}
+        )
+    </insert>
+</mapper>

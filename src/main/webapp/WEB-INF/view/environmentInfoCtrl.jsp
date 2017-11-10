@@ -45,10 +45,10 @@
 function add(){
 	 layer.open({
 		 title: '在线调试'
-			  ,content: '<form action="" method="post"><input  class="form-control" placeholder="ip地址"><br>'+
-			  '<input  class="form-control" placeholder="端口"><br>'+
-			  '<input  class="form-control" placeholder="URI地址"><br>'+
-			  '<input  class="form-control" placeholder="名称"><br>'+
+			  ,content: '<form action="addEnvironment" method="post"><input  name="ip" class="form-control" placeholder="ip地址"><br>'+
+			  '<input  name="port" class="form-control" placeholder="端口"><br>'+
+			  '<input  name="url" class="form-control" placeholder="URI地址"><br>'+
+			  '<input  name="name" class="form-control" placeholder="名称"><br>'+
 			  '<div style="text-align:center;"><input type="submit" class="btn btn-default" value="提交"></div> </from>'
 		,area: ['500px', '400px']
 	 });
@@ -86,36 +86,36 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="" method="post">
+		<form class="form-horizontal" action="queryEnvironment" method="post">
 			<div class="col-sm-4" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">环境信息编号</label>
+				<label for="code" class="col-sm-4 control-label">环境信息编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="环境信息编号">
+					<input  class="form-control" placeholder="环境信息编号" id="code" name="code" >
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">IP地址</label>
+				<label for="ip" class="col-sm-4 control-label">IP地址</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="IP地址">
+					<input  class="form-control" placeholder="IP地址" id="ip" name="ip">
 				</div>
 
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">端口</label>
+				<label for="port" class="col-sm-4 control-label">端口</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="端口">
+					<input  class="form-control" placeholder="端口" id="port" name="port">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">URI地址</label>
+				<label for="url" class="col-sm-4 control-label">URI地址</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="URI地址">
+					<input  class="form-control" placeholder="URI地址" id="url" name="url">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">名称</label>
+				<label for="name" class="col-sm-4 control-label">名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="名称">
+					<input  class="form-control" placeholder="名称" id="name" name="name">
 				</div>
 			</div>
 			<div>
