@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwforever.business.mapper.ElementMapper">
+    <resultMap id="eleRM" type="com.hwforever.business.model.Element">
+        <id column="ele.id" property="id"/>
+        <result column="ele.code" property="code"/>
+        <result column="ele.name" property="name"/>
+        <result column="ele.ename" property="ename"/>
+        <result column="ele.description" property="description"/>
+    </resultMap>
+
+    <sql id="allElementColumn">
+        ele.code `ele.code`,
+        ele.name `ele.name`,
+        ele.ename `ele.ename`,
+        ele.description `ele.description`
+    </sql>
+
+    <select id="selectElementAll" resultMap="eleRM">
+        SELECT
+        ele.id `ele.id`,
+        <include refid="allElementColumn"/>
+        FROM element ele WHERE 1=1
+    </select>
+
+    <select id="selectElement" parameterType="com.hwforever.business.model.Element" resultMap="eleRM">
+        SELECT
+        ele.id `ele.id`,
+        <include refid="allElementColumn"/>
+        FROM element ele WHERE 1=1
+        <if test="code != null">
+            AND code = #{code}
+        </if>
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+        <if test="ename != null">
+            AND ename = #{ename}
+        </if>
+        <if test="description != null">
+            AND description = #{description}
+        </if>
+    </select>
+    
+    <select id="selectElementByProjectId" parameterType="java.lang.Integer" resultMap="eleRM">
+        SELECT
+        ele.id `ele.id`,
+        <include refid="allElementColumn"/>
+        FROM element ele
+        INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
+        AND rel.pro_id = #{1}
+    </select>
+
+    <insert id="insertElement" parameterType="com.hwforever.business.model.Element" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO element(
+        `code`,
+        `name`,
+        `ename`
+        )
+        VALUES(
+        #{code},
+        #{name},
+        #{ename}
+        )
+    </insert>
+
+    <insert id="insertElementOfProject" parameterType="com.hwforever.business.model.Element" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO pro_ele_rel(
+        `pro_id`,
+        `ele_id`
+        )
+        VALUES (
+        #{pro_id},
+        #{id}
+        )
+    </insert>
+
+    <update id="updateElement" parameterType="com.hwforever.business.model.Element">
+        UPDATE element SET
+        `code` = #{code},
+        `name` = #{name},
+        `ename` = #{ename},
+        `description` = #{description}
+        WHERE code = #{code}
+    </update>
+
+    <delete id="deleteElement" parameterType="com.hwforever.business.model.Element">
+        DELETE FROM element WHERE code = #{code}
+    </delete>
+</mapper>

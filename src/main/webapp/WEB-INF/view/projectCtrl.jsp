@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,10 +46,9 @@
 function add(){
 	 layer.open({
 		 title: '在线调试'
-			  ,content: '<form action="" method="post"><input  class="form-control" placeholder="ip地址"><br>'+
-			  '<input  class="form-control" placeholder="端口"><br>'+
-			  '<input  class="form-control" placeholder="URI地址"><br>'+
-			  '<input  class="form-control" placeholder="名称"><br>'+
+			  ,content: '<form action="addProject" method="post"><input  name="name" class="form-control" placeholder="中文名称"><br>'+
+			  '<input  name="ename" class="form-control" placeholder="英文名称"><br>'+
+			  '<input  name="description" class="form-control" placeholder="项目描述"><br>'+
 			  '<div style="text-align:center;"><input type="submit" class="btn btn-default" value="提交"></div> </from>'
 			  ,area:['500px', '400px']
 	 });
@@ -58,11 +58,12 @@ function update(obj){
 	 layer.open({
 		 title: '在线调试'
 			  ,content: 
-			  '<form action="" method="post">'+
+			  '<form action="updateProject" method="post">'+
 			  '<input  class="form-control" placeholder="项目编号" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" disabled="disabled"><br>'+
-			  '<input  class="form-control" placeholder="中文名称" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
-			  '<input  class="form-control" placeholder="英文名称" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
-			  '<input  class="form-control" placeholder="项目描述" value="'+$(obj).parent().prev().text()+'"><br>'+
+			  '<input  name="code" type="hidden" class="form-control" placeholder="项目编号" value="'+$(obj).parent().prev().prev().prev().prev().text()+'"><br>'+
+			  '<input  name="name" class="form-control" placeholder="中文名称" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
+			  '<input  name="ename" class="form-control" placeholder="英文名称" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
+			  '<input  name="description" class="form-control" placeholder="项目描述" value="'+$(obj).parent().prev().text()+'"><br>'+
 			  '<div style="text-align:center;"><input class="btn btn-default" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
 			  ,area: ['500px', '400px']
 			 
@@ -85,30 +86,30 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="" method="post">
+		<form class="form-horizontal" action="queryProject" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">项目编号</label>
+				<label for="code" class="col-sm-4 control-label">项目编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="项目编号">
+					<input  class="form-control" placeholder="项目编号" id="code" name="code">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">中文名称</label>
+				<label for="name" class="col-sm-4 control-label">中文名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="中文名称">
+					<input  class="form-control" placeholder="中文名称" id="name" name="name">
 				</div>
 
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">英文名称</label>
+				<label for="ename" class="col-sm-4 control-label">英文名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="英文名称">
+					<input  class="form-control" placeholder="英文名称" id="ename" name="ename">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">项目描述</label>
+				<label for="description" class="col-sm-4 control-label">项目描述</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="项目描述">
+					<input  class="form-control" placeholder="项目描述" id="description" name="description">
 				</div>
 			</div>
 			
@@ -137,9 +138,11 @@ function doclick(obj)  {
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
 					<th>项目编号</th><th>中文名称</th><th>英文名称</th><th>项目描述</th><th >操作</th></tr>
+				<c:forEach items="${pros}" var="pro">
 				<tr>
-					<td>222</td><td>哈哈</td><td>hehe</td><td>笑</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
+					<td>${pro.code}</td><td>${pro.name}</td><td>${pro.ename}</td><td>${pro.description}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 </div>

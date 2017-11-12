@@ -3,6 +3,7 @@ package com.hwforever.business.service;
 
 import com.hwforever.business.mapper.EnvironmentMapper;
 import com.hwforever.business.model.Environment;
+import com.hwforever.common.CodeEnum;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ public class EnvironmentService {
     private EnvironmentMapper environmentMapper;
 
     public boolean insertEnvironment(Environment environment){
-        environment.setCode(LocalDate.now().toString().replace("-","")+ LocalTime.now().toString().replace(":","").substring(0,6));
+        environment.setCode(CodeEnum.getCode(CodeEnum.ENVIRONMENT_CODE));
         environmentMapper.insertEnvironment(environment);
         return true;
     }

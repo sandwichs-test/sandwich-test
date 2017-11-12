@@ -42,28 +42,25 @@ public class EnvironmentController {
     public String queryEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);
         List<Environment> environments = environmentService.selectEnvironment(environment);
-        for (Environment environment1 : environments){
-            System.out.println(environment1);
-        }
         request.setAttribute("envirs",environments);
         return"environmentInfoCtrl";
     }
 
-    @RequestMapping("updateEnvironment")
-    public String updateEnvironmentController(HttpServletRequest request){
+    @RequestMapping("/updateEnvironment")
+    public String updateEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);
         environmentService.updateEnvironment(environment);
         return "redirect:/environmentInfoCtrl";
     }
 
-    @RequestMapping("deleteEnvironment")
-    public String deleteEnvironmentController(HttpServletRequest request){
+    @RequestMapping("/deleteEnvironment")
+    public String deleteEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);
         environmentService.deleteEnvironment(environment);
         return "redirect:/environmentInfoCtrl";
     }
 
-    public Environment getEnvironment(HttpServletRequest request){
+    private Environment getEnvironment(HttpServletRequest request){
         String code = request.getParameter("code");
         String name = request.getParameter("name");
         String ip = request.getParameter("ip");

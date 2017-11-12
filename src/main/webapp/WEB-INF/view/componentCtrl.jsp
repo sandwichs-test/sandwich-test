@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,12 +46,14 @@
 function add(){
 	 layer.open({
 		 title: '在线调试'
-			  ,content: '<form action="" method="post" class="layui-form"><input  class="form-control" placeholder="组件中文名称"><br>'+
-			  '<input  class="form-control" placeholder="组件英文名称"><br>'+
-			  '<select  name="" style="width:100% ;font-size:23px;" > '+
+			  ,content: '<form action="addElement" method="post" class="layui-form"><input  name="name" class="form-control" placeholder="组件中文名称"><br>'+
+			  '<input  name="ename" class="form-control" placeholder="组件英文名称"><br>'+
+			  '<select  name="proId" style="width:100% ;font-size:23px;" > '+
 			  '<option  value="">项目名称</option>'+
-			  '<option  value="0">DIVCSS5</option>'+ 
-      		  '<option  value="1">DIVCSS5</option></select>'+
+		      '<c:forEach items="${pros}" var="pro">'+
+              '<option  value="${pro.id}">${pro.name}</option>'+
+		      '</c:forEach>'+
+      		  '</select>'+
 			  '<div style="text-align:center;"><input type="submit" class="btn btn-default" value="提交"></div> </from>'
 			  ,area:['500px', '400px']
 	 });

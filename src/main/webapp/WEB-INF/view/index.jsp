@@ -86,7 +86,7 @@
 			<dd>
 				<ul>
 					<!-- <li><a data-href="http://h-ui.duoshuo.com/admin/" data-title="评论列表" href="javascript:;">评论列表</a></li> -->
-					<li><a data-href="environmentInfoCtrl" data-title="北侧组件环境信息管理" href="javascript:void(0)">被侧组件环境信息管理</a></li>
+					<li><a data-href="environmentInfoCtrl" data-title="被侧组件环境信息管理" href="javascript:void(0)">被侧组件环境信息管理</a></li>
 					<li><a data-href="projectCtrl" data-title="项目管理" href="javascript:void(0)">项目管理</a></li>
 					<li><a data-href="componentCtrl" data-title="组件管理" href="javascript:void(0)">组件管理</a></li>
 					<li><a data-href="modelCtrl" data-title="模块管理" href="javascript:void(0)">模块管理</a></li>

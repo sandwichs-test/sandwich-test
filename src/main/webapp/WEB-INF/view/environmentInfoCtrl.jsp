@@ -60,7 +60,8 @@ function update(obj){
 		 title: '在线调试'
 			  ,content: 
 			  '<form action="updateEnvironment" method="post">'+
-			  '<input  name="code" class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'" ><br>'+
+			  '<input  class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'" disabled="disabled"><br>'+
+			  '<input  name="code" type="hidden" class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'"><br>'+
 			  '<input  name="ip" class="form-control" placeholder="ip地址" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" ><br>'+
 			  '<input  name="port" class="form-control" placeholder="端口" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
 			  '<input  name="url" class="form-control" placeholder="URI地址" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
