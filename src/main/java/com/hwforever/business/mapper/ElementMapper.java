@@ -15,8 +15,16 @@ import java.util.List;
 public interface ElementMapper {
     void insertElement(Element element);
 
+    /**
+     * @descriptiong: 根据条件查询
+     * @param: element
+     */
     List<Element> selectElement(Element element);
 
+    /**
+     * @descriptiong: 查询所有
+     * @param: element
+     */
     List<Element> selectElementAll();
 
     void updateElement(Element element);
@@ -24,4 +32,10 @@ public interface ElementMapper {
     void deleteElement(Element element);
 
     void insertElementOfProject(Element element);
+
+    /**
+     * @descriptiong: 只查询element表，用于新增组件逻辑插入
+     * @param: element
+     */
+    List<Element> selectElementOnly(Element element);
 }

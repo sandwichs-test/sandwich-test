@@ -89,30 +89,30 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="" method="post">
+		<form class="form-horizontal" action="queryElement" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">组件编号</label>
+				<label for="code" class="col-sm-4 control-label">组件编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="组件编号">
+					<input  id="code" name="code" class="form-control" placeholder="组件编号">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 40px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">组件中文名称</label>
+				<label for="name" class="col-sm-4 control-label">组件中文名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="组件中文名称">
+					<input  id="name" name="name" class="form-control" placeholder="组件中文名称">
 				</div>
 
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">组件英文名称</label>
+				<label for="ename" class="col-sm-4 control-label">组件英文名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="组件英文名称">
+					<input  id="ename" name="ename" class="form-control" placeholder="组件英文名称">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">项目编号</label>
+				<label for="proId" class="col-sm-4 control-label">项目编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="项目编号">
+					<input  id="proId" name="proId" class="form-control" placeholder="项目编号">
 				</div>
 			</div>
 			
@@ -141,9 +141,11 @@ function doclick(obj)  {
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
 					<th>组件编号</th><th>组件中文名称</th><th>组件英文名称</th><th>项目编号</th><th >操作</th></tr>
+				<c:forEach items="${eles}" var="ele">
 				<tr>
-					<td>222</td><td>哈哈</td><td>hehe</td><td>笑</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
+					<td>${ele.code}</td><td>${ele.name}</td><td>${ele.ename}</td><td>${ele.pro_id}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 </div>

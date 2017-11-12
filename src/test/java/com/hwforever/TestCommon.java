@@ -14,7 +14,7 @@ import java.time.LocalTime;
 public class TestCommon {
     @Test
     public void test1(){
-        System.out.println(LocalDate.now().toString().replace("-","")+LocalTime.now().toString().replace(":","").substring(0,6));
+        System.out.println(LocalDate.now().toString().replace("-","")+LocalTime.now().toString().replace(":","").replace(".",""));
     }
 
     @Test

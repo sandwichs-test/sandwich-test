@@ -10,7 +10,6 @@ public class Element {
     private String code;
     private String name;
     private String ename;
-    private String description;
     private Integer pro_id;
 
     public Integer getId() {
@@ -45,14 +44,6 @@ public class Element {
         this.ename = ename;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Integer getPro_id() {
         return pro_id;
     }
@@ -68,7 +59,6 @@ public class Element {
                 ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", ename='" + ename + '\'' +
-                ", description='" + description + '\'' +
                 ", pro_id=" + pro_id +
                 '}';
     }

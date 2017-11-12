@@ -8,24 +8,44 @@
         <result column="ele.code" property="code"/>
         <result column="ele.name" property="name"/>
         <result column="ele.ename" property="ename"/>
-        <result column="ele.description" property="description"/>
+        <result column="rel.pro_id" property="pro_id"/>
     </resultMap>
 
     <sql id="allElementColumn">
         ele.code `ele.code`,
         ele.name `ele.name`,
-        ele.ename `ele.ename`,
-        ele.description `ele.description`
+        ele.ename `ele.ename`
     </sql>
 
     <select id="selectElementAll" resultMap="eleRM">
         SELECT
         ele.id `ele.id`,
-        <include refid="allElementColumn"/>
-        FROM element ele WHERE 1=1
+        <include refid="allElementColumn"/>,
+        rel.pro_id `rel.pro_id`
+        FROM element ele INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
     </select>
 
     <select id="selectElement" parameterType="com.hwforever.business.model.Element" resultMap="eleRM">
+        SELECT
+        ele.id `ele.id`,
+        <include refid="allElementColumn"/>,
+        rel.pro_id `rel.pro_id`
+        FROM element ele INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
+        <if test="pro_id != null">
+            AND pro_id = #{pro_id}
+        </if>
+        <if test="code != null">
+            AND code = #{code}
+        </if>
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+        <if test="ename != null">
+            AND ename = #{ename}
+        </if>
+    </select>
+
+    <select id="selectElementOnly" parameterType="com.hwforever.business.model.Element" resultMap="eleRM">
         SELECT
         ele.id `ele.id`,
         <include refid="allElementColumn"/>
@@ -38,9 +58,6 @@
         </if>
         <if test="ename != null">
             AND ename = #{ename}
-        </if>
-        <if test="description != null">
-            AND description = #{description}
         </if>
     </select>
     
@@ -82,7 +99,6 @@
         `code` = #{code},
         `name` = #{name},
         `ename` = #{ename},
-        `description` = #{description}
         WHERE code = #{code}
     </update>
 

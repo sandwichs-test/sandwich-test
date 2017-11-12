@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : zhangqiufeng
-Source Server Version : 50717
+Source Server Version : 50720
 Source Host           : localhost:3306
 Source Database       : sandwich-test
 
 Target Server Type    : MYSQL
-Target Server Version : 50717
+Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2017-11-09 16:25:52
+Date: 2017-11-12 23:52:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,9 +49,8 @@ CREATE TABLE `element` (
   `code` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `ename` varchar(256) NOT NULL,
-  `description` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='组件表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='组件表';
 
 -- ----------------------------
 -- Table structure for environment
@@ -91,7 +90,7 @@ CREATE TABLE `project` (
   `ename` varchar(256) DEFAULT NULL,
   `description` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='项目信息表';
 
 -- ----------------------------
 -- Table structure for pro_ele_rel
@@ -101,9 +100,8 @@ CREATE TABLE `pro_ele_rel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pro_id` int(11) NOT NULL,
   `ele_id` int(11) NOT NULL,
-  `addtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目组件映射关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='项目组件映射关系表';
 
 -- ----------------------------
 -- Table structure for result
@@ -111,10 +109,11 @@ CREATE TABLE `pro_ele_rel` (
 DROP TABLE IF EXISTS `result`;
 CREATE TABLE `result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(256) DEFAULT NULL,
   `serial_number` varchar(256) DEFAULT NULL,
   `case_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `type` varchar(256) DEFAULT NULL,
+  `compare_result` varchar(256) DEFAULT NULL,
   `execute_date` datetime DEFAULT NULL,
   `execute_time` int(11) DEFAULT NULL,
   `failed_reason` varchar(256) DEFAULT NULL,
@@ -170,7 +169,6 @@ CREATE TABLE `user_group_rel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
-  `add_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户与用户组映射关系表';
 

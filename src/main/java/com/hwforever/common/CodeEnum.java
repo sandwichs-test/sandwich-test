@@ -24,6 +24,6 @@ public enum CodeEnum {
     }
 
     public static String getCode(CodeEnum codeEnum){
-        return LocalDate.now().toString().replace("-","")+codeEnum.code+ LocalTime.now().toString().replace(":","").substring(0,4);
+        return LocalDate.now().toString().replace("-","").substring(2,8)+codeEnum.code+ LocalTime.now().toString().replace(":","").replace(".","");
     }
 }

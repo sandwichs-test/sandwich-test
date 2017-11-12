@@ -28,16 +28,16 @@ public class ProjectService {
     }
 
     public List<Project> selectProject(Project project){
-        if (project.getCode().equals("")){
+        if (("").equals(project.getCode())){
             project.setCode(null);
         }
-        if (project.getDescription().equals("")){
+        if (("").equals(project.getDescription())){
             project.setDescription(null);
         }
-        if (project.getEname().equals("")){
+        if (("").equals(project.getEname())){
             project.setEname(null);
         }
-        if (project.getName().equals("")){
+        if (("").equals(project.getName())){
             project.setName(null);
         }
         return projectMapper.selectProject(project);

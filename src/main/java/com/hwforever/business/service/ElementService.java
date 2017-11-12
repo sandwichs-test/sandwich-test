@@ -21,7 +21,7 @@ public class ElementService {
     public boolean insertElement(Element element){
         element.setCode(CodeEnum.getCode(CodeEnum.ELEMENT_CODE));
         elementMapper.insertElement(element);
-        List<Element> elements = selectElement(element);
+        List<Element> elements = selectElementOnly(element);
         Element elementT = elements.get(0);
         element.setId(elementT.getId());
         elementMapper.insertElementOfProject(element);
@@ -42,7 +42,26 @@ public class ElementService {
         if (("").equals(element.getName())){
             element.setName(null);
         }
+        if(("").equals(element.getPro_id())){
+            element.setPro_id(null);
+        }
         return elementMapper.selectElement(element);
+    }
+
+    public List<Element> selectElementOnly(Element element){
+        if (("").equals(element.getCode())){
+            element.setCode(null);
+        }
+        if (("").equals(element.getEname())){
+            element.setEname(null);
+        }
+        if (("").equals(element.getName())){
+            element.setName(null);
+        }
+        if(("").equals(element.getPro_id())){
+            element.setPro_id(null);
+        }
+        return elementMapper.selectElementOnly(element);
     }
 
     public boolean updateElement(Element element) {

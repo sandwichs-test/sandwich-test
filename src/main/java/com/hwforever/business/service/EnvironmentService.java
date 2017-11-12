@@ -32,16 +32,16 @@ public class EnvironmentService {
     }
 
     public List<Environment> selectEnvironment(Environment environment){
-        if (environment.getCode().equals("")){
+        if (("").equals(environment.getCode())){
             environment.setCode(null);
         }
-        if (environment.getIp().equals("")){
+        if (("").equals(environment.getIp())){
             environment.setIp(null);
         }
-        if (environment.getUrl().equals("")){
+        if (("").equals(environment.getUrl())){
             environment.setUrl(null);
         }
-        if (environment.getName().equals("")){
+        if (("").equals(environment.getName())){
             environment.setName(null);
         }
         return environmentMapper.selectEnvironment(environment);

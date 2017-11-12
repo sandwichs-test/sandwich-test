@@ -44,7 +44,9 @@ public class ElementController {
         Element element = getElement(request);
         List<Element> elements = elementService.selectElement(element);
         request.setAttribute("eles",elements);
-        return"componentCtrl";
+        List<Project> projects = projectService.selectProjectAll();
+        request.setAttribute("pros",projects);
+        return "componentCtrl";
     }
 
     @RequestMapping("/updateElement")
