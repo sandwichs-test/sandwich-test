@@ -59,12 +59,12 @@ function update(obj){
 	 layer.open({
 		 title: '在线调试'
 			  ,content: 
-			  '<form action="" method="post">'+
-			  '<input  class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'" disabled="disabled" ><br>'+
-			  '<input  class="form-control" placeholder="ip地址" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" ><br>'+
-			  '<input  class="form-control" placeholder="端口" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
-			  '<input  class="form-control" placeholder="URI地址" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
-			  '<input  class="form-control" placeholder="名称" value="'+$(obj).parent().prev().text()+'"><br>'+
+			  '<form action="updateEnvironment" method="post">'+
+			  '<input  name="code" class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'" ><br>'+
+			  '<input  name="ip" class="form-control" placeholder="ip地址" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" ><br>'+
+			  '<input  name="port" class="form-control" placeholder="端口" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
+			  '<input  name="url" class="form-control" placeholder="URI地址" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
+			  '<input  name="name" class="form-control" placeholder="名称" value="'+$(obj).parent().prev().text()+'"><br>'+
 			  '<div style="text-align:center;"><input class="btn btn-default" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
 			  ,area: ['550px', '450px']
 			  ,Btn:[]

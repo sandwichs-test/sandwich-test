@@ -6,6 +6,8 @@ import com.hwforever.business.model.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -18,8 +20,10 @@ public class EnvironmentService {
     @Resource
     private EnvironmentMapper environmentMapper;
 
-    public void insertEnvironment(Environment environment){
+    public boolean insertEnvironment(Environment environment){
+        environment.setCode(LocalDate.now().toString().replace("-","")+ LocalTime.now().toString().replace(":","").substring(0,6));
         environmentMapper.insertEnvironment(environment);
+        return true;
     }
 
     public List<Environment> selectEnvironmentAll(){
@@ -40,5 +44,15 @@ public class EnvironmentService {
             environment.setName(null);
         }
         return environmentMapper.selectEnvironment(environment);
+    }
+
+    public boolean updateEnvironment(Environment environment) {
+        environmentMapper.updateEnvironment(environment);
+        return true;
+    }
+
+    public boolean deleteEnvironment(Environment environment) {
+        environmentMapper.deleteEnvironment(environment);
+        return true;
     }
 }

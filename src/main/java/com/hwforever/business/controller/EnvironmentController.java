@@ -32,24 +32,38 @@ public class EnvironmentController {
     }
 
     @RequestMapping("/addEnvironment")
-    public @ResponseBody String addEnvironment(HttpServletRequest request){
-        String name = request.getParameter("name");
-        String ip = request.getParameter("ip");
-        String portstr = request.getParameter("port");
-        Integer port = Integer.parseInt(portstr);
-        String url = request.getParameter("url");
-        Environment environment = new Environment();
-        environment.setIp(ip);
-        environment.setCode(LocalDate.now().toString().replace("-","")+ LocalTime.now().toString().replace(":","").substring(0,6));
-        environment.setName(name);
-        environment.setPort(port);
-        environment.setUrl(url);
+    public String addEnvironment(HttpServletRequest request){
+        Environment environment = getEnvironment(request);
         environmentService.insertEnvironment(environment);
-        return "success";
+        return "redirect:/environmentInfoCtrl";
     }
 
     @RequestMapping("/queryEnvironment")
     public String queryEnvironment(HttpServletRequest request){
+        Environment environment = getEnvironment(request);
+        List<Environment> environments = environmentService.selectEnvironment(environment);
+        for (Environment environment1 : environments){
+            System.out.println(environment1);
+        }
+        request.setAttribute("envirs",environments);
+        return"environmentInfoCtrl";
+    }
+
+    @RequestMapping("updateEnvironment")
+    public String updateEnvironmentController(HttpServletRequest request){
+        Environment environment = getEnvironment(request);
+        environmentService.updateEnvironment(environment);
+        return "redirect:/environmentInfoCtrl";
+    }
+
+    @RequestMapping("deleteEnvironment")
+    public String deleteEnvironmentController(HttpServletRequest request){
+        Environment environment = getEnvironment(request);
+        environmentService.deleteEnvironment(environment);
+        return "redirect:/environmentInfoCtrl";
+    }
+
+    public Environment getEnvironment(HttpServletRequest request){
         String code = request.getParameter("code");
         String name = request.getParameter("name");
         String ip = request.getParameter("ip");
@@ -59,23 +73,12 @@ public class EnvironmentController {
             port = Integer.parseInt(portstr);
         }
         String url = request.getParameter("url");
-        System.out.println(code+"dd"+name+"dd"+ip+"dd"+port+"dd"+url);
         Environment environment = new Environment();
         environment.setCode(code);
         environment.setIp(ip);
         environment.setName(name);
         environment.setPort(port);
         environment.setUrl(url);
-        List<Environment> environments = environmentService.selectEnvironment(environment);
-        for (Environment environment1 : environments){
-            System.out.println(environment1);
-        }
-        request.setAttribute("envirs",environments);
-        return"environmentInfoCtrl";
-    }
-
-    public String updateEnvironmentController(){
-
-        return "environmentInfoCtrl";
+        return environment;
     }
 }

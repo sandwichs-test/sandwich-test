@@ -65,4 +65,17 @@
         #{url}
         )
     </insert>
+    
+    <update id="updateEnvironment" parameterType="com.hwforever.business.model.Environment">
+        UPDATE environment SET
+        `name` = #{name},
+        `port` = #{port},
+        `ip` = #{ip},
+        `url` = #{url}
+        WHERE code = #{code}
+    </update>
+    
+    <delete id="deleteEnvironment" parameterType="com.hwforever.business.model.Environment">
+        DELETE FROM environment WHERE code = #{code}
+    </delete>
 </mapper>

@@ -17,4 +17,8 @@ public interface EnvironmentMapper {
     List<Environment> selectEnvironment(Environment environment);
 
     List<Environment> selectEnvironmentAll();
+
+    void updateEnvironment(Environment environment);
+
+    void deleteEnvironment(Environment environment);
 }
