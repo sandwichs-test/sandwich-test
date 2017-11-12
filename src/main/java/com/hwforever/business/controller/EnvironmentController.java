@@ -73,4 +73,9 @@ public class EnvironmentController {
         request.setAttribute("envirs",environments);
         return"environmentInfoCtrl";
     }
+
+    public String updateEnvironmentController(){
+
+        return "environmentInfoCtrl";
+    }
 }
