@@ -59,6 +59,7 @@ CREATE TABLE `element` (
 DROP TABLE IF EXISTS `environment`;
 CREATE TABLE `environment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `ip` varchar(100) NOT NULL,
   `port` int(11) NOT NULL,
