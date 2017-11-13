@@ -9,6 +9,7 @@
         <result column="ele.name" property="name"/>
         <result column="ele.ename" property="ename"/>
         <result column="rel.pro_id" property="pro_id"/>
+        <result column="pro.name" property="pro_name"/>
     </resultMap>
 
     <sql id="allElementColumn">
@@ -21,27 +22,33 @@
         SELECT
         ele.id `ele.id`,
         <include refid="allElementColumn"/>,
-        rel.pro_id `rel.pro_id`
-        FROM element ele INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
+        rel.pro_id `rel.pro_id`,
+        pro.name `pro.name`
+        FROM element ele
+        INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
+        INNER JOIN project pro ON rel.pro_id = pro.id
     </select>
 
     <select id="selectElement" parameterType="com.hwforever.business.model.Element" resultMap="eleRM">
         SELECT
         ele.id `ele.id`,
         <include refid="allElementColumn"/>,
-        rel.pro_id `rel.pro_id`
-        FROM element ele INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
-        <if test="pro_id != null">
-            AND pro_id = #{pro_id}
+        rel.pro_id `rel.pro_id`,
+        pro.name `pro.name`
+        FROM element ele
+        INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id
+        INNER JOIN project pro ON rel.pro_id = pro.id
+        <if test="pro_name != null">
+            AND pro.name = #{pro_name}
         </if>
         <if test="code != null">
-            AND code = #{code}
+            AND ele.code = #{code}
         </if>
         <if test="name != null">
-            AND name = #{name}
+            AND ele.name = #{name}
         </if>
         <if test="ename != null">
-            AND ename = #{ename}
+            AND ele.ename = #{ename}
         </if>
     </select>
 
@@ -70,6 +77,14 @@
         AND rel.pro_id = #{1}
     </select>
 
+    <select id="selectElementByCode" parameterType="com.hwforever.business.model.Element" resultMap="eleRM">
+        SELECT
+        ele.id `ele.id`,
+        <include refid="allElementColumn"/>
+        FROM element ele
+        WHERE code = #{code}
+    </select>
+
     <insert id="insertElement" parameterType="com.hwforever.business.model.Element" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO element(
         `code`,
@@ -94,11 +109,17 @@
         )
     </insert>
 
+    <update id="updateProjectOfElement" parameterType="com.hwforever.business.model.Element">
+        UPDATE pro_ele_rel SET
+        `pro_id` = #{pro_id}
+        WHERE ele_id = #{id}
+    </update>
+
     <update id="updateElement" parameterType="com.hwforever.business.model.Element">
         UPDATE element SET
         `code` = #{code},
         `name` = #{name},
-        `ename` = #{ename},
+        `ename` = #{ename}
         WHERE code = #{code}
     </update>
 

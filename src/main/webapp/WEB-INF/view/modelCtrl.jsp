@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,16 +46,24 @@
 function add(){
 	 layer.open({
 		 title: '在线调试'
-			  ,content: '<form action="" method="post" class="layui-form"><input  class="form-control" placeholder="模块名称"><br>'+
-			  '<select  name="" style="width:100% ;font-size:23px;" > '+
-			  '<option  value="">组件名称</option>'+
-			  '<option  value="0">DIVCSS5</option>'+ 
-      		  '<option  value="1">DIVCSS5</option></select>'+
-			  
-			  '<select  name="" style="width:100% ;font-size:23px;margin-top:20px" > '+
+			  ,content: '<form action="addModule" method="post" class="layui-form"><input  name="name" class="form-control" placeholder="模块名称"><br>'+
+			  '<select  name="proId" style="width:100% ;font-size:23px;" > '+
 			  '<option  value="">项目名称</option>'+
-			  '<option  value="0">DIVCSS5</option>'+ 
-      		  '<option  value="1">DIVCSS5</option></select>'+
+              '<c:forEach items="${pros}" var="pro">'+
+              '<option  id="pro_id" value="${pro.id}" onlick="">${pro.name}</option>'+
+              '</c:forEach>'+
+      		  '</select>'+
+			  
+			  '<select  name="eleId" style="width:100% ;font-size:23px;margin-top:20px" > '+
+			  '<option  value="">组件名称</option>'+
+              '<c:forEach items="${pros}" var="pro">'+
+              '<c:forEach items="${pro.elements}" var="ele">'+
+			  '<c:if test="${pro.id==1}">' +
+              '<option  value="${ele.id}">${ele.name}</option>'+
+		      '</c:if>' +
+              '</c:forEach>'+
+              '</c:forEach>'+
+      		  '</select>'+
 			  '<div style="text-align:center;"><input type="submit" class="btn btn-default" value="提交"></div> </from>'
 			  ,area:['500px', '400px']
 	 });

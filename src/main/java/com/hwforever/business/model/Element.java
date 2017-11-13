@@ -11,6 +11,15 @@ public class Element {
     private String name;
     private String ename;
     private Integer pro_id;
+    private String pro_name;
+
+    public String getPro_name() {
+        return pro_name;
+    }
+
+    public void setPro_name(String pro_name) {
+        this.pro_name = pro_name;
+    }
 
     public Integer getId() {
         return id;
@@ -59,7 +68,8 @@ public class Element {
                 ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", ename='" + ename + '\'' +
-                ", pro_id=" + pro_id +
+                ", pro_id=" + pro_id + '\'' +
+                ", pro_name=" +pro_name +
                 '}';
     }
 }

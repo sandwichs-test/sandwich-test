@@ -63,11 +63,17 @@ function update(obj){
 	 layer.open({
 		 title: '在线调试'
 			  ,content: 
-			  '<form action="" method="post">'+
+			  '<form action="updateElement" method="post">'+
 			  '<input  class="form-control" placeholder="组件编号" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" disabled="disabled"><br>'+
-			  '<input  class="form-control" placeholder="组件中文名称" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
-			  '<input  class="form-control" placeholder="组件英文名称" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
-			  '<input  class="form-control" placeholder="项目名称" value="'+$(obj).parent().prev().text()+'"><br>'+
+			  '<input  name="code" type="hidden" class="form-control" placeholder="组件编号" value="'+$(obj).parent().prev().prev().prev().prev().text()+'"><br>'+
+			  '<input  name="name" class="form-control" placeholder="组件中文名称" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
+			  '<input  name="ename" class="form-control" placeholder="组件英文名称" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
+              '<select  name="proName" style="width:100% ;font-size:23px;" > '+
+              '<option  value="'+$(obj).parent().prev().text()+'">'+$(obj).parent().prev().text()+'</option>'+
+              '<c:forEach items="${pros}" var="pro">'+
+              '<option value="${pro.name}">${pro.name}</option>'+
+              '</c:forEach>'+
+              '</select>'+
 			  '<div style="text-align:center;"><input class="btn btn-default" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
 			  ,area: ['500px', '400px']
 			 
@@ -110,9 +116,9 @@ function doclick(obj)  {
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="proId" class="col-sm-4 control-label">项目编号</label>
+				<label for="proName" class="col-sm-4 control-label">项目名称</label>
 				<div class="col-sm-8">
-					<input  id="proId" name="proId" class="form-control" placeholder="项目编号">
+					<input  id="proName" name="proName" class="form-control" placeholder="项目名称">
 				</div>
 			</div>
 			
@@ -140,10 +146,10 @@ function doclick(obj)  {
 		<div class="table-responsive" >
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
-					<th>组件编号</th><th>组件中文名称</th><th>组件英文名称</th><th>项目编号</th><th >操作</th></tr>
+					<th>组件编号</th><th>组件中文名称</th><th>组件英文名称</th><th>项目名称</th><th >操作</th></tr>
 				<c:forEach items="${eles}" var="ele">
 				<tr>
-					<td>${ele.code}</td><td>${ele.name}</td><td>${ele.ename}</td><td>${ele.pro_id}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
+					<td>${ele.code}</td><td>${ele.name}</td><td>${ele.ename}</td><td>${ele.pro_name}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
 				</tr>
 				</c:forEach>
 			</table>

@@ -29,6 +29,8 @@ public interface ElementMapper {
 
     void updateElement(Element element);
 
+    void updateProjectOfElement(Element element);
+
     void deleteElement(Element element);
 
     void insertElementOfProject(Element element);
@@ -38,4 +40,6 @@ public interface ElementMapper {
      * @param: element
      */
     List<Element> selectElementOnly(Element element);
+
+    List<Element> selectElementByCode(Element element);
 }

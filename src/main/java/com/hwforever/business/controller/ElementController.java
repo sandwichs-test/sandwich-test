@@ -68,8 +68,9 @@ public class ElementController {
         String name = request.getParameter("name");
         String ename = request.getParameter("ename");
         String proId = request.getParameter("proId");
+        String proName = request.getParameter("proName");
         Integer pro_Id = null;
-        if (!"".equals(proId)) {
+        if (!"".equals(proId) && proId != null) {
             pro_Id = Integer.parseInt(proId);
         }
         Element element = new Element();
@@ -77,6 +78,7 @@ public class ElementController {
         element.setName(name);
         element.setEname(ename);
         element.setPro_id(pro_Id);
+        element.setPro_name(proName);
         return element;
     }
 }

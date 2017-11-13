@@ -1,7 +1,9 @@
 package com.hwforever.business.service;
 
 import com.hwforever.business.mapper.ElementMapper;
+import com.hwforever.business.mapper.ProjectMapper;
 import com.hwforever.business.model.Element;
+import com.hwforever.business.model.Project;
 import com.hwforever.common.CodeEnum;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,15 @@ import java.util.List;
 @Service
 public class ElementService {
     @Resource
+    private ProjectMapper projectMapper;
+
+    @Resource
     private ElementMapper elementMapper;
 
     public boolean insertElement(Element element){
         element.setCode(CodeEnum.getCode(CodeEnum.ELEMENT_CODE));
         elementMapper.insertElement(element);
-        List<Element> elements = selectElementOnly(element);
-        Element elementT = elements.get(0);
-        element.setId(elementT.getId());
+        element.setId(selectElementOnly(element).get(0).getId());
         elementMapper.insertElementOfProject(element);
         return true;
     }
@@ -45,6 +48,9 @@ public class ElementService {
         if(("").equals(element.getPro_id())){
             element.setPro_id(null);
         }
+        if(("").equals(element.getPro_name())){
+            element.setPro_name(null);
+        }
         return elementMapper.selectElement(element);
     }
 
@@ -65,7 +71,17 @@ public class ElementService {
     }
 
     public boolean updateElement(Element element) {
+        //先更新element表
         elementMapper.updateElement(element);
+        //根据element的项目名称，等到项目信息，主要为了得到项目id
+        Project project = new Project();
+        project.setName(element.getPro_name());
+        project = projectMapper.selectProject(project).get(0);
+        //根据element编码得到更新后的element信息，并设置项目id
+        element = elementMapper.selectElementByCode(element).get(0);
+        element.setPro_id(project.getId());
+        //更新pro_ele_rel表
+        elementMapper.updateProjectOfElement(element);
         return true;
     }
 

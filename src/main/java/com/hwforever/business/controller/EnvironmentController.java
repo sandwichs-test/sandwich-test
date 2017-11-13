@@ -66,7 +66,7 @@ public class EnvironmentController {
         String ip = request.getParameter("ip");
         String portstr = request.getParameter("port");
         Integer port = null;
-        if (!"".equals(portstr)) {
+        if (!"".equals(portstr) && portstr != null) {
             port = Integer.parseInt(portstr);
         }
         String url = request.getParameter("url");

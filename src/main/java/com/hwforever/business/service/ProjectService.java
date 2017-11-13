@@ -27,6 +27,10 @@ public class ProjectService {
         return projectMapper.selectProjectAll();
     }
 
+    public List<Project> selectProjectWithElement(){
+        return projectMapper.selectProjectWithElement();
+    }
+
     public List<Project> selectProject(Project project){
         if (("").equals(project.getCode())){
             project.setCode(null);

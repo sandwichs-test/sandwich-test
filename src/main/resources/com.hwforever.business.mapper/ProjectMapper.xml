@@ -9,6 +9,7 @@
         <result column="pro.name" property="name"/>
         <result column="pro.ename" property="ename"/>
         <result column="pro.description" property="description"/>
+        <collection property="elements" resultMap="com.hwforever.business.mapper.ElementMapper.eleRM"></collection>
     </resultMap>
     
     <sql id="allProjectColumn">
@@ -17,6 +18,17 @@
         pro.ename `pro.ename`,
         pro.description `pro.description`
     </sql>
+
+    <select id="selectProjectWithElement" resultMap="proRM">
+        SELECT
+        pro.id `pro.id`,
+        <include refid="allProjectColumn"/>,
+        ele.id `ele.id`,
+        <include refid="com.hwforever.business.mapper.ElementMapper.allElementColumn"></include>
+        FROM project pro
+        INNER JOIN pro_ele_rel rel ON rel.pro_id = pro.id
+        INNER JOIN element ele ON ele.id = rel.ele_id
+    </select>
 
     <select id="selectProjectAll" resultMap="proRM">
         SELECT

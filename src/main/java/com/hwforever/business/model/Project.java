@@ -1,5 +1,7 @@
 package com.hwforever.business.model;
 
+import java.util.List;
+
 /**
  * @Author： ZhangQiufeng
  * @Description：
@@ -11,6 +13,15 @@ public class Project {
     private String name;
     private String ename;
     private String description;
+    private List<Element> elements;
+
+    public List<Element> getElements() {
+        return elements;
+    }
+
+    public void setElements(List<Element> elements) {
+        this.elements = elements;
+    }
 
     public Integer getId() {
         return id;
@@ -60,6 +71,7 @@ public class Project {
                 ", name='" + name + '\'' +
                 ", ename='" + ename + '\'' +
                 ", description='" + description + '\'' +
+                ", elements=" + elements +
                 '}';
     }
 }
