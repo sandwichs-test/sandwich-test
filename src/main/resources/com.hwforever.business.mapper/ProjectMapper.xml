@@ -73,7 +73,6 @@
 
     <update id="updateProject" parameterType="com.hwforever.business.model.Project">
         UPDATE project SET
-        `code` = #{code},
         `name` = #{name},
         `ename` = #{ename},
         `description` = #{description}

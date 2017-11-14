@@ -13,4 +13,10 @@ import java.util.List;
 @Mapper
 public interface ModuleMapper {
     List<Module> selectModuleAll();
+
+    void insertModule(Module module);
+
+    List<Module> selectModule(Module module);
+
+    void updateModule(Module module);
 }

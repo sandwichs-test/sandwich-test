@@ -85,18 +85,20 @@ function update(obj){
 	 layer.open({
 		 title: '在线调试'
 			  ,content: 
-			  '<form action="" method="post">'+
+			  '<form action="updateModule" method="post">'+
 			  '<input  class="form-control" placeholder="模块编号" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" disabled="disabled"><br>'+
-			  '<input  class="form-control" placeholder="模块名称" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
-			  '<select  name="" style="width:100% ;font-size:23px;" > '+
+			  '<input  name="code" type="hidden" class="form-control" placeholder="模块编号" value="'+$(obj).parent().prev().prev().prev().prev().text()+'"><br>'+
+			  '<input  name="name" class="form-control" placeholder="模块名称" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
+              '<select  class="" id="projects" name="proId" style="width:100% ;font-size:23px;" onchange="getElements()"> '+
 			  '<option  value="">组件名称</option>'+
-			  '<option  value="0">DIVCSS5</option>'+ 
-      		  '<option  value="1">DIVCSS5</option></select>'+
-			  
-			  '<select  name="" style="width:100% ;font-size:23px; margin-top:20px" > '+
-			  '<option  value="">项目名称</option>'+
-			  '<option  value="0">DIVCSS5</option>'+ 
-      		  '<option  value="1">DIVCSS5</option></select>'+
+              '<c:forEach items="${pros}" var="pro">'+
+              '<option  id="pro_id" value="${pro.id}" onlick="">${pro.name}</option>'+
+              '</c:forEach>'+
+      		  '</select>'+
+
+              '<select  class="" id="elements" name="eleId" style="width:100% ;font-size:23px;margin-top:20px" > '+
+              '<option  value="">组件名称</option>'+
+              '</select>'+
 			  
 			  '<div style="text-align:center;"><input class="btn btn-default" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
 			  
@@ -120,7 +122,7 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="" method="post">
+		<form class="form-horizontal" action="queryModule" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="code" class="col-sm-4 control-label">模块编号</label>
 				<div class="col-sm-8">

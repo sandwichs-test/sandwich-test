@@ -30,4 +30,50 @@
         LEFT JOIN project pro ON modu.pro_id = pro.id
         LEFT JOIN element ele ON modu.ele_id = ele.id
     </select>
+
+    <select id="selectModule" parameterType="com.hwforever.business.model.Module" resultMap="moduRM">
+        SELECT
+        modu.id `modu.id`,
+        <include refid="allModuleColumn"/>,
+        pro.name `modu.pro_name`,
+        ele.name `modu.ele_name`
+        FROM module modu
+        INNER JOIN project pro ON modu.pro_id = pro.id
+        INNER JOIN element ele ON modu.ele_id = ele.id
+        <if test="code != null">
+            AND modu.code = #{code}
+        </if>
+        <if test="name != null">
+            AND modu.name = #{name}
+        </if>
+        <if test="pro_name != null">
+            AND pro.name = #{pro_name}
+        </if>
+        <if test="ele_name != null">
+            AND ele.name = #{ele_name}
+        </if>
+    </select>
+
+    <insert id="insertModule" parameterType="com.hwforever.business.model.Module" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO module(
+        `code`,
+        `name`,
+        `pro_id`,
+        `ele_id`
+        )
+        VALUES (
+        #{code},
+        #{name},
+        #{pro_id},
+        #{ele_id}
+        )
+    </insert>
+
+    <update id="updateModule" parameterType="com.hwforever.business.model.Module">
+        UPDATE module SET
+        `name` = #{name},
+        `pro_id` = #{pro_id},
+        `ele_id` = #{ele_id}
+        WHERE code = #{code}
+    </update>
 </mapper>

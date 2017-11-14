@@ -126,7 +126,6 @@
 
     <update id="updateElement" parameterType="com.hwforever.business.model.Element">
         UPDATE element SET
-        `code` = #{code},
         `name` = #{name},
         `ename` = #{ename}
         WHERE code = #{code}

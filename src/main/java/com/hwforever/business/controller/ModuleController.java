@@ -48,7 +48,26 @@ public class ModuleController {
     @RequestMapping("/addModule")
     public String addModule(HttpServletRequest request){
         Module module = getModule(request);
-        return "";
+        System.out.println(module);
+        moduleService.insertModule(module);
+        return "redirect:/modelCtrl";
+    }
+
+    @RequestMapping("/queryModule")
+    public String queryModule(HttpServletRequest request){
+        List<Project> projects = projectService.selectProjectAll();
+        request.setAttribute("pros",projects);
+        Module module = getModule(request);
+        List<Module> modules = moduleService.selectModule(module);
+        request.setAttribute("modus",modules);
+        return "modelCtrl";
+    }
+
+    @RequestMapping("/updateModule")
+    public String deleteModule(HttpServletRequest request){
+        Module module = getModule(request);
+        moduleService.updateModule(module);
+        return "redirect:/modelCtrl";
     }
 
     private Module getModule(HttpServletRequest request){
