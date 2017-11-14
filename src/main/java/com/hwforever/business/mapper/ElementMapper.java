@@ -35,6 +35,8 @@ public interface ElementMapper {
 
     void insertElementOfProject(Element element);
 
+    List<Element> selectElementOfProjectId(Integer id);
+
     /**
      * @descriptiong: 只查询element表，用于新增组件逻辑插入
      * @param: element

@@ -54,6 +54,10 @@ public class ElementService {
         return elementMapper.selectElement(element);
     }
 
+    public List<Element> selectElementOfProject(Integer id){
+        return elementMapper.selectElementOfProjectId(id);
+    }
+
     public List<Element> selectElementOnly(Element element){
         if (("").equals(element.getCode())){
             element.setCode(null);

@@ -18,7 +18,7 @@ public interface ProjectMapper {
 
     List<Project> selectProjectAll();
 
-    List<Project> selectProjectWithElement();
+    //List<Project> selectProjectWithElement();
 
     void updateProject(Project project);
 

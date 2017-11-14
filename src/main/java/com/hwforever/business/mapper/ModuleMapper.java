@@ -1,6 +1,9 @@
 package com.hwforever.business.mapper;
 
+import com.hwforever.business.model.Module;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @Author： ZhangQiufeng
@@ -9,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ModuleMapper {
+    List<Module> selectModuleAll();
 }

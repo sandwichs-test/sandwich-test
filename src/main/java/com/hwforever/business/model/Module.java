@@ -10,7 +10,25 @@ public class Module {
     private String code;
     private String name;
     private Integer pro_id;
+    private String pro_name;
     private Integer ele_id;
+    private String ele_name;
+
+    public String getPro_name() {
+        return pro_name;
+    }
+
+    public void setPro_name(String pro_name) {
+        this.pro_name = pro_name;
+    }
+
+    public String getEle_name() {
+        return ele_name;
+    }
+
+    public void setEle_name(String ele_name) {
+        this.ele_name = ele_name;
+    }
 
     public Integer getId() {
         return id;
@@ -59,7 +77,9 @@ public class Module {
                 ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", pro_id=" + pro_id +
+                ", pro_name='" + pro_name + '\'' +
                 ", ele_id=" + ele_id +
+                ", ele_name='" + ele_name + '\'' +
                 '}';
     }
 }

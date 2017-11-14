@@ -47,27 +47,40 @@ function add(){
 	 layer.open({
 		 title: '在线调试'
 			  ,content: '<form action="addModule" method="post" class="layui-form"><input  name="name" class="form-control" placeholder="模块名称"><br>'+
-			  '<select  name="proId" style="width:100% ;font-size:23px;" > '+
+			  '<select  class="" id="projects" name="proId" style="width:100% ;font-size:23px;" onchange="getElements()"> '+
 			  '<option  value="">项目名称</option>'+
               '<c:forEach items="${pros}" var="pro">'+
               '<option  id="pro_id" value="${pro.id}" onlick="">${pro.name}</option>'+
               '</c:forEach>'+
       		  '</select>'+
 			  
-			  '<select  name="eleId" style="width:100% ;font-size:23px;margin-top:20px" > '+
+			  '<select  class="" id="elements" name="eleId" style="width:100% ;font-size:23px;margin-top:20px" > '+
 			  '<option  value="">组件名称</option>'+
-              '<c:forEach items="${pros}" var="pro">'+
-              '<c:forEach items="${pro.elements}" var="ele">'+
-			  '<c:if test="${pro.id==1}">' +
-              '<option  value="${ele.id}">${ele.name}</option>'+
-		      '</c:if>' +
-              '</c:forEach>'+
-              '</c:forEach>'+
       		  '</select>'+
 			  '<div style="text-align:center;"><input type="submit" class="btn btn-default" value="提交"></div> </from>'
 			  ,area:['500px', '400px']
 	 });
 }
+
+function getElements() {
+	var id = $("#projects").val();
+	$("#elements").empty();
+	$.ajax({
+		type: "post",
+		url: "/getElements",
+		data: {"id": id},
+		success: function (data) {
+            $('#elements').append("<option value=''>" + '组件名称' + "</option>");
+            for (var i = 0; i < data.length; i++) {
+                $('#elements').append("<option value='" + data[i].id + "' >" + data[i].name + "</option>");
+			}
+        },
+		error: function () {
+			alert("加载失败");
+        }
+	});
+}
+
 function update(obj){
 	 layer.open({
 		 title: '在线调试'
@@ -109,28 +122,28 @@ function doclick(obj)  {
 
 		<form class="form-horizontal" action="" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">模块编号</label>
+				<label for="code" class="col-sm-4 control-label">模块编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="模块编号">
+					<input  id="code" name="code" class="form-control" placeholder="模块编号">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">模块名称</label>
+				<label for="name" class="col-sm-4 control-label">模块名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="模块名称">
+					<input  id="name" name="name" class="form-control" placeholder="模块名称">
 				</div>
 
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">组件名称</label>
+				<label for="eleName" class="col-sm-4 control-label">组件名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="组件名称">
+					<input  id="eleName" name="eleName" class="form-control" placeholder="组件名称">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">项目名称</label>
+				<label for="proName" class="col-sm-4 control-label">项目名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="项目名称">
+					<input  id="proName" name="proName" class="form-control" placeholder="项目名称">
 				</div>
 			</div>
 			
@@ -159,9 +172,11 @@ function doclick(obj)  {
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
 					<th>模块编号</th><th>模块名称</th><th>组件名称</th><th>项目名称</th><th >操作</th></tr>
+				<c:forEach items="${modus}" var="modu">
 				<tr>
-					<td>222</td><td>哈哈</td><td>hehe</td><td>笑</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
+					<td>${modu.code}</td><td>${modu.name}</td><td>${modu.ele_name}</td><td>${modu.pro_name}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 </div>

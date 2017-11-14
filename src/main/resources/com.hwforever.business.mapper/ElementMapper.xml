@@ -29,6 +29,15 @@
         INNER JOIN project pro ON rel.pro_id = pro.id
     </select>
 
+    <select id="selectElementOfProjectId" parameterType="java.lang.Integer" resultMap="eleRM">
+        SELECT
+        ele.id `ele.id`,
+        <include refid="allElementColumn"/>,
+        rel.pro_id `rel.pro_id`
+        FROM element ele
+        INNER JOIN pro_ele_rel rel ON rel.ele_id = ele.id AND rel.pro_id = #{1}
+    </select>
+
     <select id="selectElement" parameterType="com.hwforever.business.model.Element" resultMap="eleRM">
         SELECT
         ele.id `ele.id`,

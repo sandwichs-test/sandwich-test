@@ -3,5 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwforever.business.mapper.ModuleMapper">
-
+    <resultMap id="moduRM" type="com.hwforever.business.model.Module">
+        <id column="modu.id" property="id"/>
+        <result column="modu.code" property="code"/>
+        <result column="modu.name" property="name"/>
+        <result column="modu.pro_id" property="pro_id"/>
+        <result column="modu.pro_name" property="pro_name"/>
+        <result column="modu.ele_id" property="ele_id"/>
+        <result column="modu.ele_name" property="ele_name"/>
+    </resultMap>
+    
+    <sql id="allModuleColumn">
+        modu.code `modu.code`,
+        modu.name `modu.name`,
+        modu.pro_id `modu.pro_id`,
+        modu.ele_id `modu.ele_id`
+    </sql>
+    
+    <select id="selectModuleAll" resultMap="moduRM">
+        SELECT
+        modu.id `modu.id`,
+        <include refid="allModuleColumn"/>,
+        pro.name `modu.pro_name`,
+        ele.name `modu.ele_name`
+        FROM module modu
+        LEFT JOIN project pro ON modu.pro_id = pro.id
+        LEFT JOIN element ele ON modu.ele_id = ele.id
+    </select>
 </mapper>
