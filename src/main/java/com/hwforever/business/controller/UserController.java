@@ -2,12 +2,20 @@ package com.hwforever.business.controller;
 
 import com.hwforever.business.model.User;
 import com.hwforever.business.service.UserService;
+import com.hwforever.common.Constant;
+import com.hwforever.utils.CookieUtils;
+import com.hwforever.utils.TokenUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author： ZhangQiufeng
@@ -16,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class UserController {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     @Resource
     private UserService userService;
     /**
@@ -26,7 +37,25 @@ public class UserController {
     public String login(HttpServletRequest request, HttpServletResponse response){
         User user = userService.loginByUserNameAndPassword(request.getParameter("username"),request.getParameter("password"));
         if(user == null){
-            throw new RuntimeException("没有匹配的用户信息");
+            return "login";
         }
+        // 生成 Token
+        Map<String, Object> claims = new HashMap<String, Object>();
+        String loginstr = LocalTime.now().toString();
+        claims.put("uid", user.getId());
+        claims.put("loginstr", loginstr);
+        String token = null;
+        try {
+            token = TokenUtils.generateClientToken(Constant.CLIENT_SANDWICH_NAME, Constant.CLIENT_BROWSER, claims);
+            userService.updateUserLoginstr(user);
+        } catch (Exception e) {
+            LOGGER.error("无法生成Token: " + e);
+        }
+
+        request.setAttribute("msg","登录成功");
+
+        // 在浏览器种Cookie
+        CookieUtils.setCookie(response, Constant.JWT_TOKEN_COOKIE_NAME, token);
+        return null;
     }
 }
