@@ -1,0 +1,33 @@
+# PROFILES
+# dev | test | prod
+spring:
+  profiles:
+    active: local
+
+
+server:
+  tomcat:
+    max-threads: 10
+  port: 8887
+
+mybatis:
+  mapper-locations: classpath:com.hwforever.business.mapper/*.xml
+
+
+
+---
+spring:
+  profiles: local
+  datasource:
+      url: jdbc:mysql://localhost:3306/sandwich-test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: asdzxc
+      maxActive: 10
+      initialSize: 1
+      maxWait: 6000
+      minIdle: 1
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+
