@@ -94,24 +94,24 @@
 		</dd>
 	</dl>
 		
-		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 数据导出<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="question" data-title="测试报告导出" href="javascript:void(0)">测试报告导出</a></li>
-					<li><a data-href="question" data-title="测试案例明细导出" href="javascript:void(0)">测试案例明细导出</a></li>
-			</ul>
-		</dd>
-	</dl>
+<!-- 		<dl id="menu-article"> -->
+<!-- 			<dt><i class="Hui-iconfont">&#xe616;</i> 数据导出<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt> -->
+<!-- 			<dd> -->
+<!-- 				<ul> -->
+<!-- 					<li><a data-href="question" data-title="测试报告导出" href="javascript:void(0)">测试报告导出</a></li> -->
+<!-- 					<li><a data-href="question" data-title="测试案例明细导出" href="javascript:void(0)">测试案例明细导出</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</dd> -->
+<!-- 	</dl> -->
 		
-	<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="userCtrl" data-title="添加用户" href="javascript:void(0)">添加用户</a></li>
-			</ul>
-		</dd>
-	</dl>
+<!-- 	<dl id="menu-article"> -->
+<!-- 			<dt><i class="Hui-iconfont">&#xe616;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt> -->
+<!-- 			<dd> -->
+<!-- 				<ul> -->
+<!-- 					<li><a data-href="userCtrl" data-title="添加用户" href="javascript:void(0)">添加用户</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</dd> -->
+<!-- 	</dl> -->
 </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
