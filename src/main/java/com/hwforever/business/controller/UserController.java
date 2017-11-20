@@ -35,7 +35,6 @@ public class UserController {
 
     @RequestMapping("/toLogin")
     public String tologin(){
-        System.out.println("调转登录界面");
         return "login";
     }
 
@@ -46,21 +45,20 @@ public class UserController {
     @PostMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws AuthException {
         User user = userService.loginByUserNameAndPassword(request.getParameter("username"),request.getParameter("password"));
-        System.out.println("进入登录流程");
         System.out.println(user);
         if(user == null){
             return "login";
         }
-        System.out.println("开始生成token");
         // 生成 Token
         Map<String, Object> claims = new HashMap<String, Object>();
         String loginstr = LocalTime.now().toString();
+        user.setLoginstr(loginstr);
         claims.put("uid", user.getId());
-        claims.put("loginstr", loginstr);
+        claims.put("loginstr", user.getLoginstr());
         String token = null;
         try {
             token = TokenUtils.generateClientToken(Constant.CLIENT_SANDWICH_NAME, Constant.CLIENT_BROWSER, claims);
-            userService.updateUserLoginstr(user);
+            userService.updateUser(user);
         } catch (Exception e) {
             LOGGER.error("无法生成Token: " + e);
         }
@@ -69,7 +67,6 @@ public class UserController {
 
         // 在浏览器种Cookie
         CookieUtils.setCookie(response, Constant.JWT_TOKEN_COOKIE_NAME, token);
-        System.out.println("cookie种成功");
         return "redirect:/";
     }
 }

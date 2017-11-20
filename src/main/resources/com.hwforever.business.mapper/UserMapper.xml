@@ -26,6 +26,14 @@
 		WHERE u.username = #{0}
 	</select>
 
+	<select id="selectUserById" parameterType="java.lang.Integer" resultMap="uRM">
+		SELECT
+		u.id `u.id`,
+		<include refid="allUserColumn"/>
+		FROM user u
+		WHERE u.id = #{1}
+	</select>
+
 	<insert id="insertUser" parameterType="com.hwforever.business.model.User" useGeneratedKeys="true" keyProperty="id"
 			keyColumn="id">
 		INSERT INTO user(
@@ -38,6 +46,15 @@
 		#{email}
 		)
 	</insert>
+
+	<update id="updateUser"   parameterType="com.hwforever.business.model.User">
+		UPDATE user SET
+		`username` = #{username},
+		`password` = #{password},
+		`email` = #{email},
+		`loginstr` = #{loginstr}
+		WHERE id = #{id}
+	</update>
 
 	<select id="getUser" parameterType="java.util.Map"  resultType="com.hwforever.business.model.User">
 		SELECT 
@@ -84,15 +101,5 @@
         </if>
         GROUP BY username
 	</select>
-	<update id="updateUser"   parameterType="com.hwforever.business.model.User">
-		UPDATE USER  
-		SET 
-		<if test="email != null and email !='' ">
-            email = #{email} ,
-        </if>
-        <if test="null != password and '' != password ">
-            password = #{password} 
-        </if>
-		WHERE username=#{username} 
-	</update>
+
 </mapper>

@@ -17,8 +17,10 @@ public interface UserMapper {
 	User getUser(Map<String,String> map);
 	List<User> getAllUsers();
 	List<User> findUser(User user);
-	Integer updateUser(User user);
+
 
     User selectUserByUsername(String username);
     boolean insertUser(User user);
+	Integer updateUser(User user);
+	User selectUserById(Integer uid);
 }

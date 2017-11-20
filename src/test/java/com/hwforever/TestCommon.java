@@ -39,6 +39,7 @@ public class TestCommon {
         User user = new User();
         user.setUsername("admin");
         user.setPassword(CodeUtils.md5Encode("admin"));
-        userMapper.insertUser(user);
+        Integer uid = 4;
+        System.out.println(userMapper.selectUserById(uid));
     }
 }

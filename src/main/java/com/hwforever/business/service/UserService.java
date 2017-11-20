@@ -34,10 +34,11 @@ public class UserService {
     }
 
     public User selectUserById(Integer uid){
-        return null;
+        return userMapper.selectUserById(uid);
     }
 
-    public boolean updateUserLoginstr(User user) {
+    public boolean updateUser(User user) {
+        userMapper.updateUser(user);
         return true;
     }
 }
