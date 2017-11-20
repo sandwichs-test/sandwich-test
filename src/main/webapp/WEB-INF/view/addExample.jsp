@@ -88,8 +88,12 @@
 				<div class="col-sm-8">
 					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">协议类型</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<option  value="0">HTTP</option>
+			      		<option  value="1">Socket</option>
+			      		<option  value="2">MQ</option>
+			      		<option  value="3">主机</option>
+			      		<option  value="4">Tuxedo</option>
+			      		<option  value="5">Ajax</option>
 		      		</select>
 	      		</div>
 			</div>
@@ -109,8 +113,15 @@
 				<div class="col-sm-8">
 					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">项目名称</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<option  value="0">代收代付</option>
+			      		<option  value="1">现金管理</option>
+			      		<option  value="2">企业网银</option>
+			      		<option  value="3">个人网银</option>
+			      		<option  value="4">金融市场</option>
+			      		<option  value="5">国结系统</option>
+			      		<option  value="6">客户信息</option>
+			      		<option  value="7">对公管理</option>
+			      		<option  value="8">对私信息</option>
 		      		</select>
 	      		</div>
 			</div>
@@ -119,8 +130,15 @@
 				<div class="col-sm-8">
 					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">组件名称</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<option  value="0">代收代付组件</option>
+			      		<option  value="1">现金管理组件</option>
+			      		<option  value="2">企业网银组件</option>
+			      		<option  value="3">个人网银组件</option>
+			      		<option  value="4">金融市场组件</option>
+			      		<option  value="5">国结系统组件</option>
+			      		<option  value="6">客户信息组件</option>
+			      		<option  value="7">对公管理组件</option>
+			      		<option  value="8">对私信息组件</option>
 		      		</select>
 	      		</div>
 			</div>
@@ -129,8 +147,17 @@
 				<div class="col-sm-8">
 					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">所属模块</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<option  value="0">代收代付-代付款</option>
+			      		<option  value="1">现金管理-转账</option>
+			      		<option  value="2">企业网银-登录</option>
+			      		<option  value="3">企业网银-查询</option>
+			      		<option  value="4">个人网银-登录</option>
+			      		<option  value="5">金融市场-销售价格</option>
+			      		<option  value="6">国结系统-进口结算</option>
+			      		<option  value="7">国结系统-出口结算</option>
+			      		<option  value="8">客户信息-对账</option>
+			      		<option  value="9">对公管理-定价</option>
+			      		<option  value="10">对私信息-明细</option>
 		      		</select>
 	      		</div>
 			</div>
@@ -139,8 +166,9 @@
 				<div class="col-sm-8">
 					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">案例性质</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<option  value="">案例性质</option>
+						<option  value="0">正案例</option>
+			      		<option  value="1">反案例</option>
 		      		</select>
 	      		</div>
 			</div>
@@ -149,8 +177,9 @@
 				<div class="col-sm-8">
 					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">所属平台</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<option  value="0">前台系统</option>
+			      		<option  value="1">后台系统</option>
+			      		<option  value="2">新平台</option>
 		      		</select>
 	      		</div>
 			</div>
