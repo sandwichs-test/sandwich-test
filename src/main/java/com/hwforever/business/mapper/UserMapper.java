@@ -15,8 +15,10 @@ import com.hwforever.business.model.User;
 @Mapper
 public interface UserMapper {
 	User getUser(Map<String,String> map);
-	Integer insertUser(User user);
 	List<User> getAllUsers();
 	List<User> findUser(User user);
 	Integer updateUser(User user);
+
+    User selectUserByUsername(String username);
+    boolean insertUser(User user);
 }

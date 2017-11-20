@@ -18,13 +18,7 @@ public class LoginController {
 	@Resource
 	private UserMapper userMapper;
 	
-	@RequestMapping("toLogin")
-	public String tologin(){
-		
-		return "login";
-	}
-	
-	@RequestMapping("login")
+	//@RequestMapping("login")
 	public String login(String username,String password,ModelMap model){
 		if("admin".equals(username)&&"admin".equals(password)){
 			return "redirect:index";

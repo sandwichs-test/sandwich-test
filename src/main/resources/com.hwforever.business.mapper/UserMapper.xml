@@ -3,6 +3,41 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwforever.business.mapper.UserMapper">
+	<resultMap id="uRM" type="com.hwforever.business.model.User">
+		<id column="u.id" property="id"/>
+		<result column="u.username" property="username"/>
+		<result column="u.password" property="password"/>
+		<result column="u.email" property="email"/>
+		<result column="u.loginstr" property="loginstr"/>
+	</resultMap>
+
+	<sql id="allUserColumn">
+		u.username `u.username`,
+		u.password `u.password`,
+		u.email `u.email`,
+		u.loginstr `u.loginstr`
+	</sql>
+
+	<select id="selectUserByUsername" parameterType="java.lang.String" resultMap="uRM">
+		SELECT
+		u.id `u.id`,
+		<include refid="allUserColumn"/>
+		FROM user u
+		WHERE u.username = #{0}
+	</select>
+
+	<insert id="insertUser" parameterType="com.hwforever.business.model.User" useGeneratedKeys="true" keyProperty="id"
+			keyColumn="id">
+		INSERT INTO user(
+		`username`,
+		`password`,
+		`email`)
+		VALUES (
+		#{username},
+		#{password},
+		#{email}
+		)
+	</insert>
 
 	<select id="getUser" parameterType="java.util.Map"  resultType="com.hwforever.business.model.User">
 		SELECT 
@@ -21,11 +56,6 @@
             AND email = #{email}
         </if>
 	</select>
-	<insert id="insertUser" parameterType="map" >
-		INSERT INTO 
-		USER(username,password,email) 
-		VALUES(#{username},#{password},#{email})
-	</insert>
 	<select id="getAllUsers"  resultType="com.hwforever.business.model.User">
 		SELECT 
 		username `username`,

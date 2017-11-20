@@ -3,12 +3,14 @@ package com.hwforever.business.controller;
 import com.hwforever.business.model.User;
 import com.hwforever.business.service.UserService;
 import com.hwforever.common.Constant;
+import com.hwforever.exception.AuthException;
 import com.hwforever.utils.CookieUtils;
 import com.hwforever.utils.TokenUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -29,16 +31,27 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+
+    @RequestMapping("/toLogin")
+    public String tologin(){
+        System.out.println("调转登录界面");
+        return "login";
+    }
+
     /**
      * 用户登录
      * @return
      */
-    @PostMapping("/user/login")
-    public String login(HttpServletRequest request, HttpServletResponse response){
+    @PostMapping("/login")
+    public String login(HttpServletRequest request, HttpServletResponse response) throws AuthException {
         User user = userService.loginByUserNameAndPassword(request.getParameter("username"),request.getParameter("password"));
+        System.out.println("进入登录流程");
+        System.out.println(user);
         if(user == null){
             return "login";
         }
+        System.out.println("开始生成token");
         // 生成 Token
         Map<String, Object> claims = new HashMap<String, Object>();
         String loginstr = LocalTime.now().toString();
@@ -56,6 +69,7 @@ public class UserController {
 
         // 在浏览器种Cookie
         CookieUtils.setCookie(response, Constant.JWT_TOKEN_COOKIE_NAME, token);
-        return null;
+        System.out.println("cookie种成功");
+        return "redirect:/";
     }
 }

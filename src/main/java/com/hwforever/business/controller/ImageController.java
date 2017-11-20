@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ImageController {
 
-	@RequestMapping("/image")
+	@RequestMapping("/image/getimage")
 	public void createImage(HttpServletResponse response,HttpSession session) throws Exception{
+		System.out.println("进来getimage");
 		BufferedImage image = new BufferedImage(80, 30, BufferedImage.TYPE_INT_RGB);
 		Graphics graphic = image.getGraphics();
 		graphic.setColor(Color.YELLOW);
@@ -37,8 +38,9 @@ public class ImageController {
 		ImageIO.write(image, "jpeg", response.getOutputStream());
 	}
 	
-	@RequestMapping("/checkImage")
+	@RequestMapping("/image/checkImage")
 	public void checkImage(String code,HttpSession session,HttpServletResponse response) throws Exception{
+		System.out.println("进来检查image");
 		Object result = session.getAttribute("result");
 		PrintWriter pw = response.getWriter();
 		if(code != null && code.equals(result.toString())){

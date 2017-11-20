@@ -31,16 +31,24 @@ public class LoginInterceptor implements HandlerInterceptor {
         String token = null;
         try {
             token = AppUtils.getClientToken(request, Constant.JWT_TOKEN_COOKIE_NAME);
+            System.out.println("获取token陈宫");
             Integer uid = TokenUtils.getPrivateClaimFromClientToken(Constant.CLIENT_SANDWICH_NAME, token, Constant.TOKEN_UID_CLAIM, Integer.class);
+            System.out.println("获取用户id陈宫");
             String loginstr = TokenUtils.getPrivateClaimFromClientToken(Constant.CLIENT_SANDWICH_NAME, token, Constant.TOKEN_LOGINSTR_CLAIM, String.class);
+            System.out.println("获取用户上次登录时间成功");
             User user = userService.selectUserById(uid);
             if (user.getLoginstr().equals(loginstr)){
+                System.out.println("1");
                 return true;
             }else {
-                return false;
+                System.out.println("2");
+                response.sendRedirect(request.getContextPath()+"/toLogin");
+                return true;
             }
         } catch (Exception e) {
-            return false;
+            System.out.println("3");
+            response.sendRedirect(request.getContextPath()+"/toLogin");
+            return true;
         }
     }
 

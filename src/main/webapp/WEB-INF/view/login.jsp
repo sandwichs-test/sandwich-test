@@ -31,7 +31,7 @@ $(function(){
 		var code = $("#code").val();
 		//发送Ajax请求
 		$.ajax({
-			url:"/checkImage",
+			url:"/image/checkImage",
 			type:"post",
 			data:{"code":code},
 			dataType:"json",
@@ -51,7 +51,7 @@ $(function(){
 });
 
 function changeJPG(){
-	$("#login_img").attr("src","image?flag="+Math.random());
+	$("#login_img").attr("src","/image/getimage?flag="+Math.random());
 }
 
 function submitForm(){
@@ -99,7 +99,7 @@ function submitForm(){
 	</div>
 	<div class="form-group">
 		<input type="text" class="input-sm" name="code" id="code" placeHolder="请输入验证码">
-		<img alt="" src="image" onclick="changeJPG()" id="login_img">
+		<img alt="" src="/image/getimage" onclick="changeJPG()" id="login_img">
 		<a href="javascript:void(0)" onclick="changeJPG()">看不清楚？</a>
 		<span id="s_code"></span>
 	</div>
