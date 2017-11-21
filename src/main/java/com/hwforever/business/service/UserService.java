@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author： ZhangQiufeng
@@ -39,6 +40,20 @@ public class UserService {
 
     public boolean updateUser(User user) {
         userMapper.updateUser(user);
+        return true;
+    }
+
+    public List<User> selectUserAll() {
+        return userMapper.selectUserAll();
+    }
+
+    public List<User> selectUserLike(User user){
+        return userMapper.selectUserLike(user);
+    }
+
+    public boolean insertUser(User user){
+        user.setPassword(CodeUtils.md5Encode(user.getPassword()));
+        userMapper.insertUser(user);
         return true;
     }
 }

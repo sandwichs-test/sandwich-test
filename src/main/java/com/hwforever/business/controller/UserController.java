@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -68,5 +69,38 @@ public class UserController {
         // 在浏览器种Cookie
         CookieUtils.setCookie(response, Constant.JWT_TOKEN_COOKIE_NAME, token);
         return "redirect:/";
+    }
+
+    @RequestMapping("/userCtrl")
+    public String userCtrl(HttpServletRequest request){
+        List<User> users = userService.selectUserAll();
+        request.setAttribute("users",users);
+        return "userCtrl";
+    }
+
+    @RequestMapping("/addUser")
+    public String addUser(HttpServletRequest request){
+        User user = getUser(request);
+        userService.insertUser(user);
+        return "redirect:/userCtrl";
+    }
+
+    @RequestMapping("/queryUser")
+    public String queryUser(HttpServletRequest request){
+        User user = getUser(request);
+        List<User> users = userService.selectUserLike(user);
+        request.setAttribute("users",users);
+        return "userCtrl";
+    }
+
+    public User getUser(HttpServletRequest request) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        return user;
     }
 }

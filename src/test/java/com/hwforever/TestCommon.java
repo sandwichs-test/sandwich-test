@@ -37,9 +37,9 @@ public class TestCommon {
     @Test
     public void test3(){
         User user = new User();
-        user.setUsername("admin");
-        user.setPassword(CodeUtils.md5Encode("admin"));
+        user.setUsername("zhangqiufeng");
+        user.setPassword(CodeUtils.md5Encode("zhangqiufeng"));
         Integer uid = 4;
-        System.out.println(userMapper.selectUserById(uid));
+        System.out.println(userMapper.insertUser(user));
     }
 }

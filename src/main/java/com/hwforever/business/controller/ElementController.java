@@ -1,5 +1,6 @@
 package com.hwforever.business.controller;
 
+import com.hwforever.business.aop.AuthorizedREST;
 import com.hwforever.business.model.Element;
 import com.hwforever.business.model.Project;
 import com.hwforever.business.service.ElementService;
@@ -24,6 +25,7 @@ public class ElementController {
     @Resource
     private ProjectService projectService;
 
+    @AuthorizedREST
     @RequestMapping("/componentCtrl")
     public String componentCtrl(HttpServletRequest request){
         List<Project> projects = projectService.selectProjectAll();
@@ -33,12 +35,15 @@ public class ElementController {
         return "componentCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/addElement")
     public String addElement(HttpServletRequest request){
         Element element = getElement(request);
         elementService.insertElement(element);
         return "redirect:/componentCtrl";
     }
+
+    @AuthorizedREST
     @RequestMapping("/queryElement")
     public String queryElement(HttpServletRequest request){
         Element element = getElement(request);
@@ -49,6 +54,7 @@ public class ElementController {
         return "componentCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/updateElement")
     public String updateElement(HttpServletRequest request){
         Element element = getElement(request);
@@ -56,6 +62,7 @@ public class ElementController {
         return "redirect:/componentCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/deleteElement")
     public String deleteElement(HttpServletRequest request){
         Element element = getElement(request);

@@ -1,5 +1,6 @@
 package com.hwforever.business.controller;
 
+import com.hwforever.business.aop.AuthorizedREST;
 import com.hwforever.business.model.Environment;
 import com.hwforever.business.model.Project;
 import com.hwforever.business.service.ProjectService;
@@ -20,6 +21,7 @@ public class ProjectController {
     @Resource
     private ProjectService projectService;
 
+    @AuthorizedREST
     @RequestMapping("/projectCtrl")
     public String projectCtrl(HttpServletRequest request){
         List<Project> projects = projectService.selectProjectAll();
@@ -27,13 +29,15 @@ public class ProjectController {
         return "projectCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/addProject")
     public String addProject(HttpServletRequest request){
         Project project = getProject(request);
-        System.out.println(project);
         projectService.insertProject(project);
         return "redirect:/projectCtrl";
     }
+
+    @AuthorizedREST
     @RequestMapping("/queryProject")
     public String queryProject(HttpServletRequest request){
         Project project = getProject(request);
@@ -42,6 +46,7 @@ public class ProjectController {
         return"projectCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/updateProject")
     public String updateProject(HttpServletRequest request){
         Project project = getProject(request);
@@ -49,6 +54,7 @@ public class ProjectController {
         return "redirect:/projectCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("deleteProject")
     public String deleteProject(HttpServletRequest request){
         Project project = getProject(request);

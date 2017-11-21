@@ -23,4 +23,6 @@ public interface UserMapper {
     boolean insertUser(User user);
 	Integer updateUser(User user);
 	User selectUserById(Integer uid);
+    List<User> selectUserAll();
+	List<User> selectUserLike(User user);
 }

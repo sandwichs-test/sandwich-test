@@ -1,5 +1,6 @@
 package com.hwforever.business.controller;
 
+import com.hwforever.business.aop.AuthorizedREST;
 import com.hwforever.business.model.Environment;
 import com.hwforever.business.service.EnvironmentService;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class EnvironmentController {
     @Resource
     private EnvironmentService environmentService;
 
+    @AuthorizedREST
     @RequestMapping("/environmentInfoCtrl")
     public String environmentInfoCtrl(HttpServletRequest request){
         List<Environment> environments = environmentService.selectEnvironmentAll();
@@ -31,6 +33,7 @@ public class EnvironmentController {
         return "environmentInfoCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/addEnvironment")
     public String addEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);
@@ -38,6 +41,7 @@ public class EnvironmentController {
         return "redirect:/environmentInfoCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/queryEnvironment")
     public String queryEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);
@@ -46,6 +50,7 @@ public class EnvironmentController {
         return"environmentInfoCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/updateEnvironment")
     public String updateEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);
@@ -53,6 +58,7 @@ public class EnvironmentController {
         return "redirect:/environmentInfoCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/deleteEnvironment")
     public String deleteEnvironment(HttpServletRequest request){
         Environment environment = getEnvironment(request);

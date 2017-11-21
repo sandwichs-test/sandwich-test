@@ -8,6 +8,7 @@
 		<result column="u.username" property="username"/>
 		<result column="u.password" property="password"/>
 		<result column="u.email" property="email"/>
+		<result column="u.status" property="status"/>
 		<result column="u.loginstr" property="loginstr"/>
 	</resultMap>
 
@@ -15,8 +16,17 @@
 		u.username `u.username`,
 		u.password `u.password`,
 		u.email `u.email`,
+		u.status `u.status`,
 		u.loginstr `u.loginstr`
 	</sql>
+
+	<select id="selectUserAll"  resultMap="uRM">
+		SELECT
+		u.id `u.id`,
+		<include refid="allUserColumn"/>
+		FROM user u
+		WHERE 1=1
+	</select>
 
 	<select id="selectUserByUsername" parameterType="java.lang.String" resultMap="uRM">
 		SELECT
@@ -34,16 +44,33 @@
 		WHERE u.id = #{1}
 	</select>
 
+	<select id="selectUserLike" parameterType="com.hwforever.business.model.User" resultMap="uRM">
+		SELECT
+		u.id `u.id`,
+		<include refid="allUserColumn"/>
+		FROM user u
+		WHERE 1=1
+		<if test="username != null and username != '' ">
+			AND u.username like CONCAT(CONCAT('%', #{username}), '%')
+		</if>
+		<if test="email != null and email !='' ">
+			AND u.email like CONCAT(CONCAT('%', #{email}), '%')
+		</if>
+	</select>
+
 	<insert id="insertUser" parameterType="com.hwforever.business.model.User" useGeneratedKeys="true" keyProperty="id"
 			keyColumn="id">
 		INSERT INTO user(
 		`username`,
 		`password`,
-		`email`)
+		`email`,
+		`status`
+		)
 		VALUES (
 		#{username},
 		#{password},
-		#{email}
+		#{email},
+		0
 		)
 	</insert>
 
@@ -66,40 +93,12 @@
 		<if test="username != null">
             AND username = #{username}
         </if>
-        <if test="password != null">
-            AND password = #{password}
-        </if>
         <if test="email != null">
             AND email = #{email}
         </if>
 	</select>
-	<select id="getAllUsers"  resultType="com.hwforever.business.model.User">
-		SELECT 
-		username `username`,
-		password `password`,
-		email `email`
-		FROM USER 
-		WHERE 1=1
-		GROUP BY username
-	</select>
+
 	
-	<select id="findUser"  resultType="com.hwforever.business.model.User" parameterType="com.hwforever.business.model.User">
-		SELECT 
-		username `username`,
-		password `password`,
-		email `email`
-		FROM USER 
-		WHERE 1=1 
-		<if test="username != null and username != '' ">
-            AND username like CONCAT(CONCAT('%', #{username}), '%') 
-        </if>
-        <if test="email != null and email !='' ">
-            AND email like CONCAT(CONCAT('%', #{email}), '%') 
-        </if>
-        <if test="null != password and '' != password ">
-            AND password like CONCAT(CONCAT('%', #{password}), '%') 
-        </if>
-        GROUP BY username
-	</select>
+
 
 </mapper>

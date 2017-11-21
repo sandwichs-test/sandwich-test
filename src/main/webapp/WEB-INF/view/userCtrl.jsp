@@ -71,10 +71,10 @@ function add(){
 	 layer.open({
 		 title: '在线调试'
 			  ,content: '<form action="addUser" method="post" class="layui-form">'+
-			  '<input id="username1" name="username1" required lay-verify="required" onblur="checkUsername();" class="form-control" placeholder="用户名""><br>'+
+			  '<input id="username" name="username" required lay-verify="required" onblur="checkUsername();" class="form-control" placeholder="用户名""><br>'+
 			  '<span id="checkUsernameRes"></span>'+
-			  '<input id="password1" name="password1" required  lay-verify="required"  class="form-control" placeholder="用户密码" ><br>'+
-			  '<input id="email1" name="email1" type="text" required lay-verify="required|email" class="form-control" placeholder="email" ><br>'+
+			  '<input id="password" name="password" required  lay-verify="required"  class="form-control" placeholder="用户密码" ><br>'+
+			  '<input id="email" name="email" type="text" required lay-verify="required|email" class="form-control" placeholder="email" ><br>'+
 			  '<div style="text-align:center;"><input class="btn btn-default" id="submitBtn" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
 			  ,area:['500px', '400px']
 	 });
@@ -82,11 +82,11 @@ function add(){
 
 function findUser(){
 	var username=$("#username").val();
-	var email=$("#email").val();
+	var email=$("#emai").val();
 	$("#tab").empty();
 	$.ajax({
 		type: "post",
-		url: "/findUser",
+		url: "/queryUser",
 		data: {"username": username,"email":email},
 		success: function (data) {
             $('#tab').append("<tr><th>用户名</th><th>用户密码</th><th>E-mail</th><th >操作</th></tr>");
@@ -105,9 +105,9 @@ function update(obj){
 		 title: '在线调试'
 			  ,content: 
 			  '<form action="updateUser" method="post" class="layui-form">'+
-			  '<input  name="username2" class="form-control" required lay-verify="required" placeholder="用户名" value="'+$(obj).parent().prev().prev().prev().text()+'" readonly><br>'+
-			  '<input  name="password2" required lay-verify="required"  class="form-control" placeholder="用户密码" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
-			  '<input  name="email2" required lay-verify="email" class="form-control" placeholder="email" value="'+$(obj).parent().prev().text()+'"><br>'+
+			  '<input  name="username" class="form-control" required lay-verify="required" placeholder="用户名" value="'+$(obj).parent().prev().prev().prev().text()+'" readonly><br>'+
+			  '<input  name="password" required lay-verify="required"  class="form-control" placeholder="用户密码" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
+			  '<input  name="email" required lay-verify="email" class="form-control" placeholder="email" value="'+$(obj).parent().prev().text()+'"><br>'+
 			  '<div style="text-align:center;"><input class="btn btn-default" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
 			  ,area: ['500px', '400px']
 	 });
@@ -131,16 +131,16 @@ function aa(){
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="findUser" method="post">
+		<form class="form-horizontal" action="queryUser" method="post">
 			<div class="col-sm-8" style="margin-top: 20px;">
-				<label for="code" class="col-sm-4 control-label">用户名</label>
+				<label for="username" class="col-sm-4 control-label">用户名</label>
 				<div class="col-sm-8">
 					<input  id="username" name="username" class="form-control" placeholder="用户名">
 				</div>
 			</div>
 
 			<div class="col-sm-8" style="margin-top: 20px;">
-				<label for="eleName" class="col-sm-4 control-label">E-mail</label>
+				<label for="email" class="col-sm-4 control-label">E-mail</label>
 				<div class="col-sm-8">
 					<input  id="email" name="email" class="form-control" placeholder="email">
 				</div>
@@ -148,7 +148,7 @@ function aa(){
 			
 			<div>
 				<div class="col-sm-12" style="margin-top: 20px; text-align: center;">
-					<button type="button" onclick="findUser()" class="btn btn-default">查询</button>
+					<button type="submit" class="btn btn-default">查询</button>
 					<button type="reset" class="btn btn-default">重置</button>
 				</div>
 
@@ -170,10 +170,10 @@ function aa(){
 		<div class="table-responsive" >
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
-					<th>用户名</th><th>用户密码</th><th>E-mail</th><th >操作</th></tr>
+					<th>用户名</th><th>用户角色</th><th>E-mail</th><th >操作</th></tr>
 				<c:forEach items="${users}" var="user">
 				<tr>
-					<td>${user.username}</td><td>${user.password}</td><td>${user.email}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
+					<td>${user.username}</td><td><c:choose><c:when test="${user.status == 1}">管理员</c:when><c:otherwise>测试人员</c:otherwise></c:choose></td><td>${user.email}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td>
 				</tr>
 				</c:forEach>
 			</table>

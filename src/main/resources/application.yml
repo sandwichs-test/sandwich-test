@@ -8,7 +8,7 @@ spring:
 server:
   tomcat:
     max-threads: 10
-  port: 8080
+  port: 8887
 
 mybatis:
   mapper-locations: classpath:com.hwforever.business.mapper/*.xml
