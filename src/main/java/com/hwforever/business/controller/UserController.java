@@ -40,6 +40,19 @@ public class UserController {
     }
 
     /**
+     * 用户登出
+     * @param request
+     * @param response
+     * @return 回到登录界面
+     */
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request,HttpServletResponse response){
+        CookieUtils.removeCookie(request, response, Constant.JWT_TOKEN_COOKIE_NAME);
+        request.setAttribute("msg", "登出成功");
+        return "login";
+    }
+
+    /**
      * 用户登录
      * @return
      */
