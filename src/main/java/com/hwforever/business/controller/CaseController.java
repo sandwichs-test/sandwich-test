@@ -14,4 +14,12 @@ public class CaseController {
     public String addExample(){
         return "addExample";
     }
+    @RequestMapping("/searchExample")
+    public String searchExample(){
+        return "searchExample";
+    }
+    @RequestMapping("/runHis")
+    public String runHis(){
+        return "runHis";
+    }
 }

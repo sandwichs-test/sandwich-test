@@ -181,7 +181,7 @@
 			
 			<div>
 				<div class="col-sm-12" style="margin-top: 20px; text-align: center;">
-					<button type="submit" class="btn btn-default">查询</button>
+					<button type="submit" class="btn btn-default">添加</button>
 					<button type="reset" class="btn btn-default">重置</button>
 				</div>
 

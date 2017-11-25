@@ -102,6 +102,16 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+         <configuration>  
+                   <mainclass>com.hwforever.SandwichApp</mainclass>  
+               </configuration>  
+               <executions>  
+                   <execution>  
+                       <goals>  
+                           <goal>repackage</goal>  
+                       </goals>  
+                   </execution>  
+               </executions>  
       </plugin>
     </plugins>
     <!-- 配置java版本 不配置的话默认父类配置的是1.6-->
@@ -118,4 +128,10 @@
     </pluginManagement>
     <finalName>sandwicth-test</finalName>
   </build>
+  <repositories>  
+        <repository>  
+            <id>spring-milestone</id>  
+            <url>http://repo.spring.io/libs-release</url>  
+        </repository>  
+    </repositories> 
 </project>

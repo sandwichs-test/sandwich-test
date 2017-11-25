@@ -60,7 +60,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="addExample" data-title="添加案例" href="javascript:;">添加案例</a></li>
-					<li><a data-href="" data-title="查询案例" href="javascript:;">查询案例</a></li>
+					<li><a data-href="searchExample" data-title="查询案例" href="javascript:;">查询案例</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -77,7 +77,7 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 案例执行历史查询<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="notes" data-title="执行历史查询" href="javascript:void(0)">执行历史查询</a></li>
+					<li><a data-href="runHis" data-title="执行历史查询" href="javascript:void(0)">执行历史查询</a></li>
 			</ul>
 		</dd>
 	</dl>
