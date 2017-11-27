@@ -26,10 +26,6 @@
 <title>index</title>
 <meta name="keywords" content="H-ui.admin 3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin 3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
-	<style type="text/css">
-		#menu-article {
-		}
-	</style>
 </head>
 <body>
 <header class="navbar-wrapper">
@@ -39,26 +35,24 @@
 			<div class="container-fluid cl"> <div class="logo navbar-logo f-l" style="width: 184px;text-align: left;" >功能页面</div>
 			<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 
-				<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
-
-					</li>
-						<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
-							<ul class="dropDown-menu menu radius box-shadow">
-								<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
-								<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
-								<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
-								<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
-								<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
-								<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
-							</ul>
-						</li>
-					</li>
-				</nav>
-			</div>
-		</div>
+		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+			
+			</li>
+				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+					<ul class="dropDown-menu menu radius box-shadow">
+						<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
+						<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
+						<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
+						<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
+						<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
+						<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
 	</div>
+</div>
 </header>
-
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 	<dl id="menu-member">
@@ -100,24 +94,24 @@
 		</dd>
 	</dl>
 		
-		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 数据导出<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="question" data-title="测试报告导出" href="javascript:void(0)">测试报告导出</a></li>
-					<li><a data-href="question" data-title="测试案例明细导出" href="javascript:void(0)">测试案例明细导出</a></li>
-			</ul>
-		</dd>
-	</dl>
+<!-- 		<dl id="menu-article"> -->
+<!-- 			<dt><i class="Hui-iconfont">&#xe616;</i> 数据导出<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt> -->
+<!-- 			<dd> -->
+<!-- 				<ul> -->
+<!-- 					<li><a data-href="question" data-title="测试报告导出" href="javascript:void(0)">测试报告导出</a></li> -->
+<!-- 					<li><a data-href="question" data-title="测试案例明细导出" href="javascript:void(0)">测试案例明细导出</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</dd> -->
+<!-- 	</dl> -->
 		
-	<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 其他<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="userCtrl" data-title="用户管理" href="javascript:void(0)">用户管理</a></li>
-			</ul>
-		</dd>
-	</dl>
+<!-- 	<dl id="menu-article"> -->
+<!-- 			<dt><i class="Hui-iconfont">&#xe616;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt> -->
+<!-- 			<dd> -->
+<!-- 				<ul> -->
+<!-- 					<li><a data-href="userCtrl" data-title="添加用户" href="javascript:void(0)">添加用户</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</dd> -->
+<!-- 	</dl> -->
 </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>

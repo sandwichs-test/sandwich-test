@@ -1,30 +1,33 @@
 package com.hwforever.web;
 
+import com.hwforever.business.mapper.UserMapper;
 import com.hwforever.business.model.User;
-import com.hwforever.business.service.UserService;
 import com.hwforever.common.Constant;
-import com.hwforever.exception.AuthException;
 import com.hwforever.utils.AppUtils;
+import com.hwforever.utils.BeanUtils;
 import com.hwforever.utils.TokenUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 自定义拦截器
- * @Author： ZhangQiufeng
+ * @author： ZhangQiufeng
  * @Description： 用户登录拦截器
  * @Date： Created in 13:42 2017/11/19
  */
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
 
-    @Resource
+    /*@Resource
     private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;*/
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
@@ -33,15 +36,16 @@ public class LoginInterceptor implements HandlerInterceptor {
             token = AppUtils.getClientToken(request, Constant.JWT_TOKEN_COOKIE_NAME);
             Integer uid = TokenUtils.getPrivateClaimFromClientToken(Constant.CLIENT_SANDWICH_NAME, token, Constant.TOKEN_UID_CLAIM, Integer.class);
             String loginstr = TokenUtils.getPrivateClaimFromClientToken(Constant.CLIENT_SANDWICH_NAME, token, Constant.TOKEN_LOGINSTR_CLAIM, String.class);
-            User user = userService.selectUserById(uid);
+            User user = BeanUtils.getBean(UserMapper.class,request).selectUserById(uid);
             if (user.getLoginstr().equals(loginstr)){
                 return true;
             }else {
-                return false;
+                response.sendRedirect(request.getContextPath()+"/toLogin");
             }
         } catch (Exception e) {
-            return false;
+            response.sendRedirect(request.getContextPath()+"/toLogin");
         }
+        return false;
     }
 
     @Override

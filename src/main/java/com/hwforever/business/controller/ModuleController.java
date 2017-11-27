@@ -1,5 +1,6 @@
 package com.hwforever.business.controller;
 
+import com.hwforever.business.aop.AuthorizedREST;
 import com.hwforever.business.model.Element;
 import com.hwforever.business.model.Module;
 import com.hwforever.business.model.Project;
@@ -30,6 +31,7 @@ public class ModuleController {
     @Resource
     private ModuleService moduleService;
 
+    @AuthorizedREST
     @RequestMapping("/modelCtrl")
     public String modelCtrl(HttpServletRequest request){
         List<Project> projects = projectService.selectProjectAll();
@@ -39,12 +41,14 @@ public class ModuleController {
         return "modelCtrl";
     }
 
+
     @RequestMapping("/getElements")
     @ResponseBody
     public List<Element> getElements(Integer id){
         return elementService.selectElementOfProject(id);
     }
 
+    @AuthorizedREST
     @RequestMapping("/addModule")
     public String addModule(HttpServletRequest request){
         Module module = getModule(request);
@@ -53,6 +57,7 @@ public class ModuleController {
         return "redirect:/modelCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/queryModule")
     public String queryModule(HttpServletRequest request){
         List<Project> projects = projectService.selectProjectAll();
@@ -63,6 +68,7 @@ public class ModuleController {
         return "modelCtrl";
     }
 
+    @AuthorizedREST
     @RequestMapping("/updateModule")
     public String deleteModule(HttpServletRequest request){
         Module module = getModule(request);

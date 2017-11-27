@@ -3,6 +3,11 @@ package com.hwforever;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @Author： ZhangQiufeng
+ * @Description：
+ * @Date： Created in 14:35 2017/11/12
+ */
 @SpringBootApplication
 public class SandwichApp {
     public static void main(String[] args) {
