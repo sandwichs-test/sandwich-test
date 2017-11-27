@@ -41,7 +41,7 @@ public class ModuleController {
         return "modelCtrl";
     }
 
-    @AuthorizedREST
+
     @RequestMapping("/getElements")
     @ResponseBody
     public List<Element> getElements(Integer id){
