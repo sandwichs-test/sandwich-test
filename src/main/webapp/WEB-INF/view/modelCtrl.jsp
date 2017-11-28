@@ -50,7 +50,7 @@ function add(){
 			  '<select  class="" id="projects" name="proId" style="width:100% ;font-size:23px;" onchange="getElements()"> '+
 			  '<option  value="">项目名称</option>'+
               '<c:forEach items="${pros}" var="pro">'+
-              '<option  id="pro_id" value="${pro.id}" onlick="">${pro.name}</option>'+
+              '<option  id="pro_id" value="${pro.id}">${pro.name}</option>'+
               '</c:forEach>'+
       		  '</select>'+
 			  

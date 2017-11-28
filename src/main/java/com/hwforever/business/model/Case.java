@@ -1,7 +1,7 @@
 package com.hwforever.business.model;
 
 /**
- * @Author： ZhangQiufeng
+ * @author： ZhangQiufeng
  * @Description：
  * @Date： Created in 14:34 2017/11/12
  */
@@ -9,7 +9,7 @@ public class Case {
     private Integer id;
     private String code;
     private String name;
-    private Integer case_type;
+    private String case_type;
     private Integer service_id;
     private String service_name;
     private Integer protocol;
@@ -48,11 +48,11 @@ public class Case {
         this.name = name;
     }
 
-    public Integer getCase_type() {
+    public String getCase_type() {
         return case_type;
     }
 
-    public void setCase_type(Integer case_type) {
+    public void setCase_type(String case_type) {
         this.case_type = case_type;
     }
 

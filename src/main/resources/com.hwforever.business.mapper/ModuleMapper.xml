@@ -31,6 +31,14 @@
         LEFT JOIN element ele ON modu.ele_id = ele.id
     </select>
 
+    <select id="selectModuleOfElementId" parameterType="java.lang.Integer" resultMap="moduRM">
+        SELECT
+        modu.id `modu.id`,
+        <include refid="allModuleColumn"/>
+        FROM module modu
+        WHERE modu.ele_id = #{1}
+    </select>
+
     <select id="selectModule" parameterType="com.hwforever.business.model.Module" resultMap="moduRM">
         SELECT
         modu.id `modu.id`,

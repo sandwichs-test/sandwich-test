@@ -58,4 +58,8 @@ public class ModuleService {
         moduleMapper.updateModule(module);
         return true;
     }
+
+    public List<Element> selectModuleOfElement(Integer id) {
+        return moduleMapper.selectModuleOfElementId(id);
+    }
 }

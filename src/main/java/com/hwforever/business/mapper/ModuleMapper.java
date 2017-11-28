@@ -1,5 +1,6 @@
 package com.hwforever.business.mapper;
 
+import com.hwforever.business.model.Element;
 import com.hwforever.business.model.Module;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,6 @@ public interface ModuleMapper {
     List<Module> selectModule(Module module);
 
     void updateModule(Module module);
+
+    List<Element> selectModuleOfElementId(Integer id);
 }

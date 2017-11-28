@@ -42,10 +42,10 @@ public class ModuleController {
     }
 
 
-    @RequestMapping("/getElements")
+    @RequestMapping("/getModules")
     @ResponseBody
     public List<Element> getElements(Integer id){
-        return elementService.selectElementOfProject(id);
+        return moduleService.selectModuleOfElement(id);
     }
 
     @AuthorizedREST

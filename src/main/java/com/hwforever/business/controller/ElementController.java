@@ -7,13 +7,14 @@ import com.hwforever.business.service.ElementService;
 import com.hwforever.business.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @Author： ZhangQiufeng
+ * @author： ZhangQiufeng
  * @Description：
  * @Date： Created in 14:34 2017/11/12
  */
@@ -68,6 +69,12 @@ public class ElementController {
         Element element = getElement(request);
         elementService.deleteElement(element);
         return "redirect:/componentCtrl";
+    }
+
+    @RequestMapping("/getElements")
+    @ResponseBody
+    public List<Element> getElements(Integer id){
+        return elementService.selectElementOfProject(id);
     }
 
     private Element getElement(HttpServletRequest request){

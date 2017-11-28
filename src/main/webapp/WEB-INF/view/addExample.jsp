@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,7 +43,43 @@
 }
 </style>
 <script type="text/javascript">
+    function getElements() {
+        var id = $("#projects").val();
+        $("#elements").empty();
+        $.ajax({
+            type: "post",
+            url: "/getElements",
+            data: {"id": id},
+            success: function (data) {
+                $('#elements').append("<option value=''>" + '组件名称' + "</option>");
+                for (var i = 0; i < data.length; i++) {
+                    $('#elements').append("<option value='" + data[i].id + "' >" + data[i].name + "</option>");
+                }
+            },
+            error: function () {
+                alert("加载失败");
+            }
+        });
+    }
 
+    function getModules(){
+        var id = $("#elements").val();
+        $("#modules").empty();
+        $.ajax({
+            type: "post",
+            url: "/getModules",
+            data: {"id": id},
+            success: function (data) {
+                $('#modules').append("<option value=''>" + '模块名称' + "</option>");
+                for (var i = 0; i < data.length; i++) {
+                    $('#modules').append("<option value='" + data[i].id + "' >" + data[i].name + "</option>");
+                }
+            },
+            error: function () {
+                alert("加载失败");
+            }
+        });
+	}
 </script>
 </head>
 <body>
@@ -58,35 +95,35 @@
 
 		<form class="form-horizontal" action="" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label" style="padding-top: 0px; line-height: 15px;"><span>案例名称</span><br><span style="color: red;font-size: 12px;">服务名称-四位编号</span></label>
+				<label for="name" class="col-sm-4 control-label" style="padding-top: 0px; line-height: 15px;"><span>案例名称</span><br><span style="color: red;font-size: 12px;">服务名称-四位编号</span></label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="模块编号">
+					<input  id="name" name="name" class="form-control" placeholder="案例名称">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">案例类型</label>
+				<label for="case_type" class="col-sm-4 control-label">案例类型</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="模块名称">
+					<input  id="case_type" name="case_type" class="form-control" placeholder="案例类型">
 				</div>
 
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">服务ID</label>
+				<label for="service_id" class="col-sm-4 control-label">服务ID</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="组件名称">
+					<input  id="service_id" name="service_id" class="form-control" placeholder="服务ID">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">服务名称</label>
+				<label for="service_name" class="col-sm-4 control-label">服务名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="项目名称">
+					<input  id="service_name" name="service_name" class="form-control" placeholder="项目名称">
 				</div>
 			</div>
 			
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">协议类型</label>
+				<label for="protocol" class="col-sm-4 control-label">协议类型</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select id="protocol" name="protocol" class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
 						<option  value="">协议类型</option>
 						<option  value="0">HTTP</option>
 			      		<option  value="1">Socket</option>
@@ -98,66 +135,42 @@
 	      		</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">被测组件环境信息</label>
+				<label for="environment" class="col-sm-4 control-label">被测组件环境信息</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker"  id="environment" name="environment" style="width: 100%;font-size: 20px;" >
 						<option  value="">被测组件环境信息</option>
-						<option  value="0">DIVCSS5</option>
-			      		<option  value="1">DIVCSS5</option>
+						<c:forEach items="${envirs}" var="envir">
+							<option  value="${envir.id}">${envir.name}</option>
+						</c:forEach>
 		      		</select>
 	      		</div>
 			</div>
 			
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">项目名称</label>
+				<label for="projects" class="col-sm-4 control-label">项目名称</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker"  id="projects" name="proId" style="width: 100%;font-size: 20px;" onchange="getElements()">
 						<option  value="">项目名称</option>
+						<c:forEach items="${pros}" var="pro">
+							<option  value="${pro.id}">${pro.name}</option>
+						</c:forEach>
 						<option  value="0">代收代付</option>
-			      		<option  value="1">现金管理</option>
-			      		<option  value="2">企业网银</option>
-			      		<option  value="3">个人网银</option>
-			      		<option  value="4">金融市场</option>
-			      		<option  value="5">国结系统</option>
-			      		<option  value="6">客户信息</option>
-			      		<option  value="7">对公管理</option>
-			      		<option  value="8">对私信息</option>
 		      		</select>
 	      		</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">组件名称</label>
+				<label for="elements" class="col-sm-4 control-label">组件名称</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker" id="elements" name="eleId" style="width: 100%;font-size: 20px;" onchange="getModules()">
 						<option  value="">组件名称</option>
-						<option  value="0">代收代付组件</option>
-			      		<option  value="1">现金管理组件</option>
-			      		<option  value="2">企业网银组件</option>
-			      		<option  value="3">个人网银组件</option>
-			      		<option  value="4">金融市场组件</option>
-			      		<option  value="5">国结系统组件</option>
-			      		<option  value="6">客户信息组件</option>
-			      		<option  value="7">对公管理组件</option>
-			      		<option  value="8">对私信息组件</option>
 		      		</select>
 	      		</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">所属模块</label>
+				<label for="modules" class="col-sm-4 control-label">所属模块</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker" id="modules" name="modId" style="width: 100%;font-size: 20px;" >
 						<option  value="">所属模块</option>
-						<option  value="0">代收代付-代付款</option>
-			      		<option  value="1">现金管理-转账</option>
-			      		<option  value="2">企业网银-登录</option>
-			      		<option  value="3">企业网银-查询</option>
-			      		<option  value="4">个人网银-登录</option>
-			      		<option  value="5">金融市场-销售价格</option>
-			      		<option  value="6">国结系统-进口结算</option>
-			      		<option  value="7">国结系统-出口结算</option>
-			      		<option  value="8">客户信息-对账</option>
-			      		<option  value="9">对公管理-定价</option>
-			      		<option  value="10">对私信息-明细</option>
 		      		</select>
 	      		</div>
 			</div>
