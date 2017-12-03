@@ -31,9 +31,8 @@
 		username `username`,
 		password `password`,
 		email `email`
-		FROM USER 
+		FROM user
 		WHERE 1=1
-		GROUP BY username
 	</select>
 	
 	<select id="findUser"  resultType="com.hwforever.business.model.User" parameterType="com.hwforever.business.model.User">
