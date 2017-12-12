@@ -93,7 +93,7 @@
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="" method="post">
+		<form class="form-horizontal" action="addCase" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="name" class="col-sm-4 control-label" style="padding-top: 0px; line-height: 15px;"><span>案例名称</span><br><span style="color: red;font-size: 12px;">服务名称-四位编号</span></label>
 				<div class="col-sm-8">
@@ -149,7 +149,7 @@
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="projects" class="col-sm-4 control-label">项目名称</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  id="projects" name="proId" style="width: 100%;font-size: 20px;" onchange="getElements()">
+					<select class="selectpicker"  id="projects" name="projects" style="width: 100%;font-size: 20px;" onchange="getElements()">
 						<option  value="">项目名称</option>
 						<c:forEach items="${pros}" var="pro">
 							<option  value="${pro.id}">${pro.name}</option>
@@ -161,7 +161,7 @@
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="elements" class="col-sm-4 control-label">组件名称</label>
 				<div class="col-sm-8">
-					<select class="selectpicker" id="elements" name="eleId" style="width: 100%;font-size: 20px;" onchange="getModules()">
+					<select class="selectpicker" id="elements" name="elements" style="width: 100%;font-size: 20px;" onchange="getModules()">
 						<option  value="">组件名称</option>
 		      		</select>
 	      		</div>
@@ -169,15 +169,15 @@
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="modules" class="col-sm-4 control-label">所属模块</label>
 				<div class="col-sm-8">
-					<select class="selectpicker" id="modules" name="modId" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker" id="modules" name="modules" style="width: 100%;font-size: 20px;" >
 						<option  value="">所属模块</option>
 		      		</select>
 	      		</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">案例性质</label>
+				<label for="nature" class="col-sm-4 control-label">案例性质</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker"  id="nature" name="nature" style="width: 100%;font-size: 20px;" >
 						<option  value="">案例性质</option>
 						<option  value="">案例性质</option>
 						<option  value="0">正案例</option>
@@ -186,9 +186,9 @@
 	      		</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-4 control-label">所属平台</label>
+				<label for="platform" class="col-sm-4 control-label">所属平台</label>
 				<div class="col-sm-8">
-					<select class="selectpicker"  name="" style="width: 100%;font-size: 20px;" >
+					<select class="selectpicker"  id="platform" name="platform" style="width: 100%;font-size: 20px;" >
 						<option  value="">所属平台</option>
 						<option  value="0">前台系统</option>
 			      		<option  value="1">后台系统</option>
@@ -197,21 +197,21 @@
 	      		</div>
 			</div>
 			<div class="col-sm-12" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-2 control-label">请求报文</label>
+				<label for="request_message" class="col-sm-2 control-label">请求报文</label>
 				<div class="col-sm-10">
-					<textarea name="" rows="10" style="width: 100%"></textarea>
+					<textarea id="request_message" name="request_message" rows="10" style="width: 100%"></textarea>
 	      		</div>
 			</div>
 			<div class="col-sm-12" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-2 control-label">期望返回报文</label>
+				<label for="response_message_hope" class="col-sm-2 control-label">期望返回报文</label>
 				<div class="col-sm-10">
-					<textarea name="" rows="10" style="width: 100%"></textarea>
+					<textarea id="response_message_hope" name="response_message_hope" rows="10" style="width: 100%"></textarea>
 	      		</div>
 			</div>
 			<div class="col-sm-12" style="margin-top: 20px;">
-				<label for="inputEmail3" class="col-sm-2 control-label">测试概述</label>
+				<label for="description" class="col-sm-2 control-label">测试概述</label>
 				<div class="col-sm-10">
-					<textarea name="" rows="10" style="width: 100%" value="验证:代收代付审批流程"></textarea>
+					<textarea id="description" name="description" rows="10" style="width: 100%" value="验证:代收代付审批流程"></textarea>
 	      		</div>
 			</div>
 			
@@ -223,7 +223,7 @@
 			
 			<div>
 				<div class="col-sm-12" style="margin-top: 20px; text-align: center;">
-					<button type="submit" class="btn btn-default">查询</button>
+					<button type="submit" class="btn btn-default">添加</button>
 					<button type="reset" class="btn btn-default">重置</button>
 				</div>
 

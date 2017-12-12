@@ -1,6 +1,9 @@
 package com.hwforever.business.mapper;
 
+import com.hwforever.business.model.Case;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @Author： ZhangQiufeng
@@ -9,4 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CaseMapper {
+    void insertCase(Case aCase);
+
+    List<Case> selectCaseAll();
 }

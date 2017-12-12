@@ -66,7 +66,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="addExample" data-title="添加案例" href="javascript:;">添加案例</a></li>
-					<li><a data-href="" data-title="查询案例" href="javascript:;">查询案例</a></li>
+					<li><a data-href="searchExample" data-title="查询案例" href="javascript:;">查询案例</a></li>
 			</ul>
 		</dd>
 	</dl>

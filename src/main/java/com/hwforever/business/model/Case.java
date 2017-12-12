@@ -14,15 +14,51 @@ public class Case {
     private String service_name;
     private Integer protocol;
     private Integer envir_id;
+    private String envir_name;
     private Integer pro_id;
+    private String pro_name;
     private Integer ele_id;
+    private String ele_name;
     private Integer mod_id;
-    private String nature;
-    private String platform;
+    private String mod_name;
+    private String nature;//案例性质
+    private String platform;//平台
     private String request_message;
     private String response_message_hope;
     private String response_message_actually;
     private String description;
+
+    public String getEnvir_name() {
+        return envir_name;
+    }
+
+    public void setEnvir_name(String envir_name) {
+        this.envir_name = envir_name;
+    }
+
+    public String getPro_name() {
+        return pro_name;
+    }
+
+    public void setPro_name(String pro_name) {
+        this.pro_name = pro_name;
+    }
+
+    public String getEle_name() {
+        return ele_name;
+    }
+
+    public void setEle_name(String ele_name) {
+        this.ele_name = ele_name;
+    }
+
+    public String getMod_name() {
+        return mod_name;
+    }
+
+    public void setMod_name(String mod_name) {
+        this.mod_name = mod_name;
+    }
 
     public Integer getId() {
         return id;

@@ -22,7 +22,11 @@
 }
 </style>
 <script type="text/javascript">
-
+$(function(){
+	  	//解决java后台跳出iframe的解决方法
+	    if (window != top)
+	    top.location.href = location.href; 
+})
 //焦点离开输入框，验证码验证
 var codeCheck=false;
 $(function(){

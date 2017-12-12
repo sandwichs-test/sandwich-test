@@ -3,5 +3,97 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwforever.business.mapper.CaseMapper">
-
+    <resultMap id="caseRM" type="com.hwforever.business.model.Case">
+        <id column="case.id" property="id"/>
+        <result column="case.code" property="code"/>
+        <result column="case.name" property="name"/>
+        <result column="case.case_type" property="case_type"/>
+        <result column="case.service_id" property="service_id"/>
+        <result column="case.service_name" property="service_name"/>
+        <result column="case.protocol" property="protocol"/>
+        <result column="case.envir_id" property="envir_id"/>
+        <result column="envir.name" property="envir_name"/>
+        <result column="case.pro_id" property="pro_id"/>
+        <result column="pro.name" property="pro_name"/>
+        <result column="case.ele_id" property="ele_id"/>
+        <result column="ele.name" property="ele_name"/>
+        <result column="case.mod_id" property="mod_id"/>
+        <result column="mod.name" property="mod_name"/>
+        <result column="case.nature" property="nature"/>
+        <result column="case.platform" property="platform"/>
+        <result column="case.request_message" property="request_message"/>
+        <result column="case.response_message_hope" property="response_message_hope"/>
+        <result column="case.response_message_actually" property="response_message_actually"/>
+        <result column="case.description" property="description"/>
+    </resultMap>
+    <sql id="allCaseColumn">
+        `case`.code `case.code`,
+        `case`.name `case.name`,
+        `case`.case_type `case.case_type`,
+        `case`.service_id `case.service_id`,
+        `case`.service_name `case.service_name`,
+        `case`.protocol `case.protocol`,
+        `case`.envir_id `case.envir_id`,
+        `case`.pro_id `case.pro_id`,
+        `case`.ele_id `case.ele_id`,
+        `case`.mod_id `case.mod_id`,
+        `case`.nature `case.nature`,
+        `case`.platform `case.platform`,
+        `case`.request_message `case.request_message`,
+        `case`.response_message_hope `case.response_message_hope`,
+        `case`.response_message_actually `case.response_message_actually`,
+        `case`.description `case.description`
+    </sql>
+    <insert id="insertCase" parameterType="com.hwforever.business.model.Case" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO `case`(
+        `code`,
+        `name`,
+        `case_type`,
+        `service_id`,
+        `service_name`,
+        `protocol`,
+        `envir_id`,
+        `pro_id`,
+        `ele_id`,
+        `mod_id`,
+        `nature`,
+        `platform`,
+        `request_message`,
+        `response_message_hope`,
+        `response_message_actually`,
+        `description`
+        )
+        VALUES(
+        #{code},
+        #{name},
+        #{case_type},
+        #{service_id},
+        #{service_name},
+        #{protocol},
+        #{envir_id},
+        #{pro_id},
+        #{ele_id},
+        #{mod_id},
+        #{nature},
+        #{platform},
+        #{request_message},
+        #{response_message_hope},
+        #{response_message_actually},
+        #{description}
+        )
+    </insert>
+    <select id="selectCaseAll" resultMap="caseRM">
+        SELECT
+        `case`.id `case.id`,
+        <include refid="allCaseColumn"/>,
+        envir.name `envir.name`,
+        pro.name `pro.name`,
+        ele.name `ele.name`,
+        mod.name `mod.name`
+        FROM `case`
+        JOIN environment envir ON `case`.envir_id = envir.id
+        JOIN project pro ON pro.id = `case`.pro_id
+        JOIN element ele ON ele.id = `case`.ele_id
+        JOIN `module` `mod` ON mod.id = `case`.mod_id
+    </select>
 </mapper>
