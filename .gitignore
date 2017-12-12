@@ -4,5 +4,5 @@ target
 *.iml
 *.log
 .classpath
-web/WEB-INF/web.xml
-META-INF/MANIFEST.MF
+/bin/
+.project
