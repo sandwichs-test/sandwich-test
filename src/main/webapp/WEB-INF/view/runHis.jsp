@@ -86,30 +86,30 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="queryProject" method="post">
+		<form class="form-horizontal" action="selectResults" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="code" class="col-sm-4 control-label">执行流水号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="执行流水号" id="code" name="code">
+					<input  id="serial_number" name="serial_number" class="form-control" placeholder="执行流水号" id="code" name="code">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="name" class="col-sm-4 control-label">案例编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="案例编号" id="name" name="name">
+					<input  id="case_code" name="case_code" class="form-control" placeholder="案例编号" id="name" name="name">
 				</div>
 
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="ename" class="col-sm-4 control-label">案例名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="案例名称" id="ename" name="ename">
+					<input  id="case_name" name="case_name" class="form-control" placeholder="案例名称" id="ename" name="ename">
 				</div>
 			</div>
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="description" class="col-sm-4 control-label">执行人</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="执行人" id="description" name="description">
+					<input  id="user_name" name="user_name" class="form-control" placeholder="执行人" id="description" name="description">
 				</div>
 			</div>
 			

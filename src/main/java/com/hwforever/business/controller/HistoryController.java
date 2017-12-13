@@ -22,10 +22,28 @@ public class HistoryController {
     @RequestMapping("/runHis")
     public String runHis(HttpServletRequest request){
         List<Result> results = resultService.selectResultAll();
-        for(Result r : results){
-            System.out.println(r.toString());
-        }
         request.setAttribute("results",results);
         return "runHis";
+    }
+
+    @RequestMapping("/selectResults")
+    public String selectResults(HttpServletRequest request){
+        Result result = getResult(request);
+        List<Result> results = resultService.selectResultLike(result);
+        request.setAttribute("results",results);
+        return "runHis";
+    }
+
+    private Result getResult(HttpServletRequest request) {
+        String serial_number = request.getParameter("serial_number");
+        String case_code = request.getParameter("case_code");
+        String case_name = request.getParameter("case_name");
+        String user_name = request.getParameter("user_name");
+        Result result = new Result();
+        result.setCase_code(case_code);
+        result.setCase_name(case_name);
+        result.setSerial_number(serial_number);
+        result.setUser_name(user_name);
+        return result;
     }
 }

@@ -20,4 +20,8 @@ public class ResultService {
     public List<Result> selectResultAll() {
         return resultMapper.selectResultAll();
     }
+
+    public List<Result> selectResultLike(Result result){
+        return resultMapper.selectResultLike(result);
+    }
 }

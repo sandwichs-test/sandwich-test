@@ -41,4 +41,27 @@
         INNER JOIN `user` u ON res.user_id = u.id
         INNER JOIN `case` ON res.case_id = `case`.id
     </select>
+    <select id="selectResultLike" parameterType="com.hwforever.business.model.Result" resultMap="resRM">
+        SELECT
+        res.id `res.id`,
+        <include refid="allResultColumn"/>,
+        `case`.code `case.code`,
+        `case`.name `case.name`,
+        u.username `u.username`
+        FROM result res
+        INNER JOIN `user` u ON res.user_id = u.id
+        INNER JOIN `case` ON res.case_id = `case`.id
+        <if test="user_name != null and user_name != '' ">
+            AND u.username like CONCAT(CONCAT('%', #{user_name}), '%')
+        </if>
+        <if test="case_code != null and case_code !='' ">
+            AND `case`.code like CONCAT(CONCAT('%', #{case_code}), '%')
+        </if>
+        <if test="case_name != null and case_name !='' ">
+            AND `case`.name like CONCAT(CONCAT('%', #{case_name}), '%')
+        </if>
+        <if test="serial_number != null and serial_number !='' ">
+            AND res.serial_number like CONCAT(CONCAT('%', #{serial_number}), '%')
+        </if>
+    </select>
 </mapper>

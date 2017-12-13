@@ -27,4 +27,8 @@ public class CaseService {
     public List<Case> selectCaseAll() {
         return caseMapper.selectCaseAll();
     }
+
+    public List<Case> selectCaseLike(Case aCase) {
+        return caseMapper.selectCaseLike(aCase);
+    }
 }

@@ -15,4 +15,6 @@ public interface CaseMapper {
     void insertCase(Case aCase);
 
     List<Case> selectCaseAll();
+
+    List<Case> selectCaseLike(Case aCase);
 }

@@ -45,6 +45,14 @@ public class CaseController {
         return "searchExample";
     }
 
+    @RequestMapping("/selectExample")
+    public String selectExample(HttpServletRequest request){
+        Case _case = getCaseFromRequest(request);
+        List<Case> cases = caseService.selectCaseLike(_case);
+        request.setAttribute("cases",cases);
+        return "searchExample";
+    }
+
     @RequestMapping("/addCase")
     public String addCase(HttpServletRequest request){
         Case _case = getCaseFromRequest(request);
@@ -53,6 +61,7 @@ public class CaseController {
     }
 
     private Case getCaseFromRequest(HttpServletRequest request){
+        String code = request.getParameter("code");
         String name = request.getParameter("name");
         String case_type = request.getParameter("case_type");
         String service_id = request.getParameter("service_id");
@@ -93,6 +102,7 @@ public class CaseController {
             mod_id = Integer.parseInt(module);
         }
         Case _case = new Case();
+        _case.setCode(code);
         _case.setName(name);
         _case.setCase_type(case_type);
         _case.setService_id(serId);
@@ -108,7 +118,6 @@ public class CaseController {
         _case.setResponse_message_hope(response_message_hope);
         _case.setResponse_message_actually(response_message_actually);
         _case.setDescription(description);
-        System.out.println(_case.toString());
         return _case;
     }
 }

@@ -13,4 +13,6 @@ import java.util.List;
 @Mapper
 public interface ResultMapper {
     List<Result> selectResultAll();
+
+    List<Result> selectResultLike(Result result);
 }

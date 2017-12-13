@@ -229,7 +229,7 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="queryModule" method="post">
+		<form class="form-horizontal" action="selectExample" method="post">
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="code" class="col-sm-4 control-label">案例编号</label>
 				<div class="col-sm-8">
