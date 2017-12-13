@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwforever.business.mapper.ResultMapper">
+    <resultMap id="resRM" type="com.hwforever.business.model.Result">
+        <id column="res.id" property="id"/>
+        <result column="res.serial_number" property="serial_number"/>
+        <result column="res.case_id" property="case_id"/>
+        <result column="res.user_id" property="user_id"/>
+        <result column="res.type" property="type"/>
+        <result column="res.execute_date" property="execute_date"/>
+        <result column="res.execute_time" property="execute_time"/>
+        <result column="res.failed_reason" property="failed_reason"/>
+        <result column="res.response_code" property="response_code"/>
+        <result column="res.request_message" property="request_message"/>
+        <result column="case.code" property="case_code"/>
+        <result column="case.name" property="case_name"/>
+        <result column="u.username" property="user_name"/>
+    </resultMap>
+    <sql id="allResultColumn">
+        res.serial_number `res.serial_number`,
+        res.case_id `res.case_id`,
+        res.user_id `res.user_id`,
+        res.type `res.type`,
+        res.execute_date `res.execute_date`,
+        res.execute_time `res.execute_time`,
+        res.failed_reason `res.failed_reason`,
+        res.response_code `res.response_code`,
+        res.request_message `res.request_message`
+    </sql>
+
+    <select id="selectResultAll" resultMap="resRM">
+        SELECT
+        res.id `res.id`,
+        <include refid="allResultColumn"/>,
+        `case`.code `case.code`,
+        `case`.name `case.name`,
+        u.username `u.username`
+        FROM result res
+        INNER JOIN `user` u ON res.user_id = u.id
+        INNER JOIN `case` ON res.case_id = `case`.id
+    </select>
+</mapper>

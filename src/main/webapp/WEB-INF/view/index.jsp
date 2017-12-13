@@ -83,7 +83,7 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 案例执行历史查询<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="notes" data-title="执行历史查询" href="javascript:void(0)">执行历史查询</a></li>
+					<li><a data-href="runHis" data-title="执行历史查询" href="javascript:void(0)">执行历史查询</a></li>
 			</ul>
 		</dd>
 	</dl>

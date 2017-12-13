@@ -136,11 +136,11 @@ function doclick(obj)  {
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
 					<th>执行流水号</th><th>执行人</th><th>案例编号</th><th>案例名称</th><th >执行结果</th><th>执行时间</th><th>执行时长</th><th>报文对比结果</th><th>返回码</th></tr>
-<%-- 				<c:forEach items="${pros}" var="pro"> --%>
+ 				<c:forEach items="${results}" var="res">
 				<tr>
-					<td>执行流水号</td><td>执行人</td><td>案例编号</td><td>案例名称</td><td >执行结果</td><td>执行时间</td><td>执行时长</td><td>报文对比结果</td><td>返回码</td>
+					<td>${res.serial_number}</td><td>${res.user_name}</td><td>${res.case_code}</td><td>${res.case_name}</td><td ><c:if test="${res.type=='0'}">失败</c:if><c:if test="${res.type=='1'}">成功</c:if></td><td>${res.execute_date}</td><td>${res.execute_time}ms</td><td>${res.request_message}</td><td>${res.response_code}</td>
 				</tr>
-<%-- 				</c:forEach> --%>
+				</c:forEach>
 			</table>
 		</div>
 </div>
