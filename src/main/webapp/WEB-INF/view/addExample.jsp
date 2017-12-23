@@ -196,6 +196,12 @@
 		      		</select>
 	      		</div>
 			</div>
+			<div class="col-sm-6" style="margin-top: 20px;">
+				<label for="service_name" class="col-sm-4 control-label">特征码</label>
+				<div class="col-sm-8">
+					<input  id="special_code" name="special_code" class="form-control" placeholder="特征码">
+				</div>
+			</div>
 			<div class="col-sm-12" style="margin-top: 20px;">
 				<label for="request_message" class="col-sm-2 control-label">请求报文</label>
 				<div class="col-sm-10">
@@ -215,11 +221,18 @@
 	      		</div>
 			</div>
 			
-			
-			
-			
-			
-			
+			<div class="col-sm-6" style="margin-top: 20px;">
+				<label for="service_id" class="col-sm-4 control-label">创建人</label>
+				<div class="col-sm-8">
+					<input  id="creater" name="creater" class="form-control" placeholder="创建人">
+				</div>
+			</div>
+			<div class="col-sm-6" style="margin-top: 20px;">
+				<label for="service_name" class="col-sm-4 control-label">创建时间</label>
+				<div class="col-sm-8">
+					<input  id="create_time" name="create_time" class="form-control" placeholder="创建时间">
+				</div>
+			</div>
 			
 			<div>
 				<div class="col-sm-12" style="margin-top: 20px; text-align: center;">

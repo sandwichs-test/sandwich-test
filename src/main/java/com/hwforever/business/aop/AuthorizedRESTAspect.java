@@ -29,32 +29,32 @@ import java.io.IOException;
 @Aspect
 @Component
 public class AuthorizedRESTAspect {
-    public static final Logger LOGGER = LoggerFactory.getLogger(AuthorizedRESTAspect.class);
-
-    @Before("@annotation(com.hwforever.business.aop.AuthorizedREST)")
-    public void authrizeREST(JoinPoint joinPoint) throws IOException, TokenException, AopException, AuthException {
-        Object[] args = joinPoint.getArgs();
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-
-        for (Object arg : args) {
-            if (HttpServletRequest.class.isAssignableFrom(arg.getClass())) {
-                request = (HttpServletRequest) arg;
-            }
-        }
-
-        if (request == null) {
-            LOGGER.error("方法无HttpServletRequest 和 HttpServletResponse 类型形参");
-            throw new AopException("错误，请增加 HttpServletRequest 和 HttpServletResponse 类型的形参");
-        }
-        String token = null;
-        token = AppUtils.getClientToken(request, Constant.JWT_TOKEN_COOKIE_NAME);
-        Integer uid = TokenUtils.getPrivateClaimFromClientToken(Constant.CLIENT_SANDWICH_NAME, token, Constant.TOKEN_UID_CLAIM, Integer.class);
-        User user = BeanUtils.getBean(UserMapper.class,request).selectUserById(uid);
-        if (user.getStatus().equals(1)){
-            return;
-        }else {
-            throw new AuthException("该用户无此权限");
-        }
-    }
+//    public static final Logger LOGGER = LoggerFactory.getLogger(AuthorizedRESTAspect.class);
+//
+//    @Before("@annotation(com.hwforever.business.aop.AuthorizedREST)")
+//    public void authrizeREST(JoinPoint joinPoint) throws IOException, TokenException, AopException, AuthException {
+//        Object[] args = joinPoint.getArgs();
+//        HttpServletRequest request = null;
+//        HttpServletResponse response = null;
+//
+//        for (Object arg : args) {
+//            if (HttpServletRequest.class.isAssignableFrom(arg.getClass())) {
+//                request = (HttpServletRequest) arg;
+//            }
+//        }
+//
+//        if (request == null) {
+//            LOGGER.error("方法无HttpServletRequest 和 HttpServletResponse 类型形参");
+//            throw new AopException("错误，请增加 HttpServletRequest 和 HttpServletResponse 类型的形参");
+//        }
+//        String token = null;
+//        token = AppUtils.getClientToken(request, Constant.JWT_TOKEN_COOKIE_NAME);
+//        Integer uid = TokenUtils.getPrivateClaimFromClientToken(Constant.CLIENT_SANDWICH_NAME, token, Constant.TOKEN_UID_CLAIM, Integer.class);
+//        User user = BeanUtils.getBean(UserMapper.class,request).selectUserById(uid);
+//        if (user.getStatus().equals(1)){
+//            return;
+//        }else {
+//            throw new AuthException("该用户无此权限");
+//        }
+//    }
 }

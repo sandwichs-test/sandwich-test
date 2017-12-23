@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description： 用户登录拦截器
  * @Date： Created in 13:42 2017/11/19
  */
-@Component
+//@Component
 public class LoginInterceptor implements HandlerInterceptor {
 
     /*@Resource
