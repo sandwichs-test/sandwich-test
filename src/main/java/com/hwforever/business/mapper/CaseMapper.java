@@ -17,4 +17,6 @@ public interface CaseMapper {
     List<Case> selectCaseAll();
 
     List<Case> selectCaseLike(Case aCase);
+    
+    Case selectCaseOneById(int id);
 }

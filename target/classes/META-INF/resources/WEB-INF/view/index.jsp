@@ -75,7 +75,7 @@
 			<dt><i class="Hui-iconfont">&#xe613;</i> 测试案例执行<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="http://localhost:8090/study_online_back/video-add" data-title="执行案例" href="javascript:void(0)">执行案例</a></li>
+					<li><a data-href="runExample" data-title="执行案例" href="javascript:void(0)">执行案例</a></li>
 			</ul>
 		</dd>
 	</dl>

@@ -15,4 +15,6 @@ public interface ResultMapper {
     List<Result> selectResultAll();
 
     List<Result> selectResultLike(Result result);
+    
+    void insertResult(Result result);
 }

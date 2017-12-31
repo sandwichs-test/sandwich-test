@@ -30,6 +30,29 @@
         res.request_message `res.request_message`
     </sql>
 
+	<insert id="insertResult" parameterType="com.hwforever.business.model.Result" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO `result`
+            (
+             `serial_number`,
+             `case_id`,
+             `user_id`,
+             `type`,
+             `execute_date`,
+             `execute_time`,
+             `failed_reason`,
+             `response_code`,
+             `request_message`)
+		VALUES (
+		        #{serial_number},
+		        #{case_id},
+		        #{user_id},
+		        #{type},
+		        NOW(),
+		        #{execute_time},
+		        #{failed_reason},
+		        #{response_code},
+		        #{request_message});
+	</insert>
     <select id="selectResultAll" resultMap="resRM">
         SELECT
         res.id `res.id`,

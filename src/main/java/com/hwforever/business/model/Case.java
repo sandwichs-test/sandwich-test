@@ -27,6 +27,7 @@ public class Case {
     private String response_message_hope;
     private String response_message_actually;
     private String description;
+    private String create_time;
 
     public String getEnvir_name() {
         return envir_name;
@@ -218,4 +219,13 @@ public class Case {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+	public String getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(String create_time) {
+		this.create_time = create_time;
+	}
+
 }

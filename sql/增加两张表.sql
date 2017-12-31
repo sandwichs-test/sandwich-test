@@ -23,8 +23,9 @@ DROP TABLE IF EXISTS `discern_column`;
 CREATE TABLE `discern_column` (
   `id` int(11) DEFAULT NULL COMMENT 'id',
   `case_id` int(11) DEFAULT NULL COMMENT '案例id',
-  `discern_Column_Name` varchar(50) DEFAULT NULL COMMENT '识别字段名称',
-  `discernType_id` int(11) DEFAULT NULL COMMENT '识别字段方式id'
+  `discern_name` varchar(50) DEFAULT NULL COMMENT '识别字段名称',
+  `discernType_id` int(11) DEFAULT NULL COMMENT '识别字段方式id',
+  `discern_value` varchar(100) DEFAULT NULL COMMENT '特征字段值'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `discern_type` */

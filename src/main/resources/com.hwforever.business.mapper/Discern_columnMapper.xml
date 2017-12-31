@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwforever.business.mapper.Discern_columnMapper">
+
+    <insert id="insertDiscern_column" parameterType="com.hwforever.business.model.Discern_column" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO `discern_column`
+            (
+             `case_id`,
+             `discern_name`,
+             `discern_type_id`,
+             `discern_value`
+             )
+		VALUES 
+			(
+	         #{case_id},
+	         #{discern_name},
+	         #{discernType_id},
+	         #{discern_value}
+	         );
+    </insert>
+
+    <select id="selectDiscern_columnOneByCaseId" parameterType="int" resultType="com.hwforever.business.model.Discern_column">
+    	select
+			`id`,
+			`case_id`,
+			`discern_name`,
+			`discern_type_id`,
+			`discern_value`
+		from `discern_column` where case_id=#{case_id}
+    </select>
+</mapper>

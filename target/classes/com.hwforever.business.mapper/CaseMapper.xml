@@ -82,19 +82,40 @@
         #{description}
         )
     </insert>
-    <select id="selectCaseAll" resultMap="caseRM">
+    <select id="selectCaseAll"
+    resultType="com.hwforever.business.model.Case"
+    >
         SELECT
-        `case`.id `case.id`,
-        <include refid="allCaseColumn"/>,
-        envir.name `envir.name`,
-        pro.name `pro.name`,
-        ele.name `ele.name`,
-        mod.name `mod.name`
+        `id`,
+  `code`,
+  `name`,
+  `case_type`,
+  `service_id`,
+  `service_name`,
+  `protocol`,
+  `envir_id`,
+  `pro_id`,
+  `ele_id`,
+  `mod_id`,
+  `nature`,
+  `platform`,
+  `request_message`,
+  `response_message_hope`,
+  `response_message_actually`,
+  `description`,
+  `creater`,
+  `create_time`
+<!--         `case`.id `case.id`, -->
+<!--         <include refid="allCaseColumn"/> -->
+<!--         envir.name `envir.name`, -->
+<!--         pro.name `pro.name`, -->
+<!--         ele.name `ele.name`, -->
+<!--         mod.name `mod.name` -->
         FROM `case`
-        JOIN environment envir ON `case`.envir_id = envir.id
-        JOIN project pro ON pro.id = `case`.pro_id
-        JOIN element ele ON ele.id = `case`.ele_id
-        JOIN `module` `mod` ON mod.id = `case`.mod_id
+<!--         JOIN environment envir ON `case`.envir_id = envir.id -->
+<!--         JOIN project pro ON pro.id = `case`.pro_id -->
+<!--         JOIN element ele ON ele.id = `case`.ele_id -->
+<!--         JOIN `module` `mod` ON mod.id = `case`.mod_id -->
     </select>
     <select id="selectCaseLike" parameterType="com.hwforever.business.model.Case" resultMap="caseRM">
         SELECT
@@ -115,5 +136,39 @@
         <if test="name != null and name !='' ">
             AND `case`.name like CONCAT(CONCAT('%', #{name}), '%')
         </if>
+    </select>
+    <select id="selectCaseOneById" parameterType="int" resultType="com.hwforever.business.model.Case">
+        SELECT
+        `id`,
+  `code`,
+  `name`,
+  `case_type`,
+  `service_id`,
+  `service_name`,
+  `protocol`,
+  `envir_id`,
+  `pro_id`,
+  `ele_id`,
+  `mod_id`,
+  `nature`,
+  `platform`,
+  `request_message`,
+  `response_message_hope`,
+  `response_message_actually`,
+  `description`,
+  `creater`,
+  `create_time`
+<!--         `case`.id `case.id`, -->
+<!--         <include refid="allCaseColumn"/>, -->
+<!--         envir.name `envir.name`, -->
+<!--         pro.name `pro.name`, -->
+<!--         ele.name `ele.name`, -->
+<!--         mod.name `mod.name` -->
+        FROM `case`
+<!--         JOIN environment envir ON `case`.envir_id = envir.id -->
+<!--         JOIN project pro ON pro.id = `case`.pro_id -->
+<!--         JOIN element ele ON ele.id = `case`.ele_id -->
+<!--         JOIN `module` `mod` ON mod.id = `case`.mod_id -->
+        where `case`.id=#{id}
     </select>
 </mapper>

@@ -43,36 +43,21 @@
 }
 </style>
 <script type="text/javascript">
-function add(){
-	 layer.open({
-		 title: '在线调试'
-			  ,content: '<form action="addEnvironment" method="post"><input  name="ip" class="form-control" placeholder="ip地址"><br>'+
-			  '<input  name="port" class="form-control" placeholder="端口"><br>'+
-			  '<input  name="url" class="form-control" placeholder="URI地址"><br>'+
-			  '<input  name="name" class="form-control" placeholder="名称"><br>'+
-			  '<div style="text-align:center;"><input type="submit" class="btn btn-default" value="提交"></div> </from>'
-		,area: ['500px', '400px']
-	 });
-}
-function update(obj){
-	$(obj).parent().prev().text()
-	 layer.open({
-		 title: '在线调试'
-			  ,content: 
-			  '<form action="updateEnvironment" method="post">'+
-			  '<input  class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'" disabled="disabled"><br>'+
-			  '<input  name="code" type="hidden" class="form-control" placeholder="环境信息编号" value="'+$(obj).parent().prev().prev().prev().prev().prev().text()+'"><br>'+
-			  '<input  name="ip" class="form-control" placeholder="ip地址" value="'+$(obj).parent().prev().prev().prev().prev().text()+'" ><br>'+
-			  '<input  name="port" class="form-control" placeholder="端口" value="'+$(obj).parent().prev().prev().prev().text()+'"><br>'+
-			  '<input  name="url" class="form-control" placeholder="URI地址" value="'+$(obj).parent().prev().prev().text()+'"><br>'+
-			  '<input  name="name" class="form-control" placeholder="名称" value="'+$(obj).parent().prev().text()+'"><br>'+
-			  '<div style="text-align:center;"><input class="btn btn-default" type="submit" value="提交"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="reset" class="btn btn-default" value="重置"> </div> </from>'
-			  ,area: ['550px', '450px']
-			  ,Btn:[]
-	 });
-}
-function doclick(obj)  {  
-    alert(); 
+
+function run(case_id)  {  
+	$.ajax({
+		url:"${pageContext.request.contextPath}/run",
+		type:"post",
+		data:{"case_id":case_id},
+		dataType:"json",
+		success:function(data){
+			if(data.res==1){
+				alert("执行成功");
+			}else{
+				alert("执行失败");
+			}
+		}
+	});
 } 
 </script>
 </head>
@@ -88,54 +73,54 @@ function doclick(obj)  {
 	</div>
 	<div class="container-fluid">
 
-		<form class="form-horizontal" action="queryEnvironment" method="post">
+		<form class="form-horizontal" action="findExample" method="post">
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="code" class="col-sm-4 control-label">案例编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="环境信息编号" id="code" name="code" >
+					<input  class="form-control" placeholder="案例编号" id="code" name="code" >
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="ip" class="col-sm-4 control-label">服务ID</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="IP地址" id="ip" name="ip">
+					<input  class="form-control" placeholder="服务ID" id="service_id" name="service_id">
 				</div>
 
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="port" class="col-sm-4 control-label">服务名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="端口" id="port" name="port">
+					<input  class="form-control" placeholder="服务名称" id="service_name" name="service_name">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="url" class="col-sm-4 control-label">模块编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="URI地址" id="url" name="url">
+					<input  class="form-control" placeholder="模块编号" id="modules" name="modules">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="name" class="col-sm-4 control-label">组件编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="名称" id="name" name="name">
+					<input  class="form-control" placeholder="组件编号" id="elements" name="elements">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="name" class="col-sm-4 control-label">项目编号</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="名称" id="name" name="name">
+					<input  class="form-control" placeholder="项目编号" id="pro_id" name="projects">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="name" class="col-sm-4 control-label">平台ID</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="名称" id="name" name="name">
+					<input  class="form-control" placeholder="平台ID" id="platform" name="platform">
 				</div>
 			</div>
 			<div class="col-sm-4" style="margin-top: 20px;">
 				<label for="name" class="col-sm-4 control-label">案例名称</label>
 				<div class="col-sm-8">
-					<input  class="form-control" placeholder="名称" id="name" name="name">
+					<input  class="form-control" placeholder="案例名称" id="name" name="name">
 				</div>
 			</div>
 			<div>
@@ -152,8 +137,8 @@ function doclick(obj)  {
 		<div class="container-fluid cl">
 			<div class="logo navbar-logo f-l mr-10 hidden-xs"
 				style="width: 184px; text-align: left;">查询结果</div>
-			<div class="logo navbar-logo f-l mr-10 hidden-xs"
-				style="width: 184px; text-align: left;" onclick="add();" id="add">执行</div>
+<!-- 			<div class="logo navbar-logo f-l mr-10 hidden-xs" -->
+<!-- 				style="width: 184px; text-align: left;" onclick="run();" id="add">执行</div> -->
 		</div>
 	</div>
 	<div class="container" style="float: left; width: 100%;padding-left: 0px;padding-right: 0px;">
@@ -162,12 +147,12 @@ function doclick(obj)  {
 		<div class="table-responsive" >
 			<table id="tab" class="table table-striped table-hover"  style="float: left;font-size: 20px;" >
 				<tr class="danger">
-					<th>案例ID</th><th>案例名称</th><th>用户名称</th><th>服务ID</th><th>服务名称</th><th >创建时间</th><th>协议类型</th></tr>
-<%-- 				<c:forEach items="${cases}" var="case"> --%>
-<!-- 				<tr> -->
-<%-- 					<td>${envir.code}</td><td>${envir.ip}</td><td>${envir.port}</td><td>${envir.url}</td><td>${envir.name}</td><td><input type="button" value="更新" class="btn btn-info" onclick="update(this)"></td> --%>
-<!-- 				</tr> -->
-<%-- 				</c:forEach> --%>
+					<th>操作</th><th>案例ID</th><th>案例名称</th><th>用户名称</th><th>服务ID</th><th>服务名称</th><th >创建时间</th><th>协议类型</th></tr>
+				<c:forEach items="${cases}" var="cas">
+				<tr>
+					<td><input type="button" class="btn btn-info" value="执行" onclick="run(${cas.id})"></td><td>${cas.id}</td><td>${cas.name}</td><td>用户名</td><td>${cas.service_id}</td><td>${cas.service_name}</td><td>${cas.create_time}</td><td>${cas.case_type}</td>
+				</tr>
+				</c:forEach>
 			</table>
 		</div>
 </div>

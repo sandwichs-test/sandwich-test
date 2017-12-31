@@ -24,4 +24,9 @@ public class ResultService {
     public List<Result> selectResultLike(Result result){
         return resultMapper.selectResultLike(result);
     }
+    
+    public boolean insertResult(Result result){
+    	resultMapper.insertResult(result);
+    	return true;
+    }
 }

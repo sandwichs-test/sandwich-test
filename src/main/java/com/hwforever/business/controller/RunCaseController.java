@@ -18,7 +18,7 @@ import java.util.List;
  * @Description：
  * @Date： Created in 14:35 2017/11/12
  */
-@Controller
+//@Controller
 public class RunCaseController {
     @Resource
     private CaseService caseService;

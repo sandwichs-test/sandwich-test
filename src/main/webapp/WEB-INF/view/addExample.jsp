@@ -199,8 +199,23 @@
 			<div class="col-sm-6" style="margin-top: 20px;">
 				<label for="service_name" class="col-sm-4 control-label">特征码</label>
 				<div class="col-sm-8">
-					<input  id="special_code" name="special_code" class="form-control" placeholder="特征码">
+					<input  id="discern_name" name="discern_name" class="form-control" placeholder="特征码">
 				</div>
+			</div>
+			<div class="col-sm-6" style="margin-top: 20px;">
+				<label for="service_name" class="col-sm-4 control-label">特征值</label>
+				<div class="col-sm-8">
+					<input  id="discern_value" name="discern_value" class="form-control" placeholder="特征值">
+				</div>
+			</div>
+			<div class="col-sm-6" style="margin-top: 20px;">
+				<label for="platform" class="col-sm-4 control-label">判断类型</label>
+				<div class="col-sm-8">
+					<select class="selectpicker"  id="platform" name="platform" style="width: 100%;font-size: 20px;" >
+						<option  value="1">内容匹配</option>
+						<option  value="2">长度匹配</option>
+		      		</select>
+	      		</div>
 			</div>
 			<div class="col-sm-12" style="margin-top: 20px;">
 				<label for="request_message" class="col-sm-2 control-label">请求报文</label>

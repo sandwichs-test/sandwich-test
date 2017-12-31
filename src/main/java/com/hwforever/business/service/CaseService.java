@@ -31,4 +31,8 @@ public class CaseService {
     public List<Case> selectCaseLike(Case aCase) {
         return caseMapper.selectCaseLike(aCase);
     }
+    
+    public Case selectCaseOneById(int id){
+    	return caseMapper.selectCaseOneById(id);
+    }
 }
