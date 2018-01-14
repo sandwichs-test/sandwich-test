@@ -91,7 +91,7 @@ function submitForm(){
 		${error}
 	</div>
 	<% } %>
-	<form action="login" method="post" onsubmit="return submitForm()">
+	<form action="login" method="post" <%--onsubmit="return submitForm()"--%>>
 	<h1 >用户登录</h1>
 	<div  class="form-group">
 	<input type="text" name="username" id="username" class="form-control" placeHolder="请输入用户名"><br/>
@@ -101,12 +101,12 @@ function submitForm(){
 	<input type="password" name="password" id="password" class="form-control" placeHolder="请输入密码"><br/>
 	<span id="passwordCheck"></span>
 	</div>
-	<div class="form-group">
+	<%--<div class="form-group">
 		<input type="text" class="input-sm" name="code" id="code" placeHolder="请输入验证码">
 		<img alt="" src="/image/getimage" onclick="changeJPG()" id="login_img">
 		<a href="javascript:void(0)" onclick="changeJPG()">看不清楚？</a>
 		<span id="s_code"></span>
-	</div>
+	</div>--%>
 	<input type="submit" value="登录" class="btn btn-primary btn-lg btn-block" >
 	<span id="result">${result }</span>
 	</form>
